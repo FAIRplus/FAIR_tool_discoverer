@@ -1,7 +1,7 @@
 <template>
   <div class="container run_main">
     <v-row class='first-parag'>
-        <h4>Disover Tools</h4>
+        <h4>Discover Tools</h4>
     </v-row >
     <p>Introduce search terms and respective weights (optionally).</p>
     <InputArea @click='runDiscoverer'/>
