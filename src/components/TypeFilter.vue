@@ -13,19 +13,19 @@
           group
         >
         <v-btn> 
-            <span class="hidden-sm-and-down">CMD</span>
+            <span>CMD</span>
             </v-btn>
         <v-btn> 
-            <span class="hidden-sm-and-down">WEB APP</span>
+            <span>WEB APP</span>
             </v-btn>
             <v-btn> 
-            <span class="hidden-sm-and-down">library</span>
+            <span>library</span>
             </v-btn>
         <v-btn> 
-            <span class="hidden-sm-and-down">DESKTOP APP</span>
+            <span>DESKTOP APP</span>
             </v-btn>
         <v-btn>
-            <span class="hidden-sm-and-down">suite</span>
+            <span>suite</span>
              </v-btn>
         </v-btn-toggle>
 

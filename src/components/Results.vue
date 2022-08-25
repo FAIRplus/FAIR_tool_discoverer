@@ -79,7 +79,7 @@ export default {
       panel: 0
     }},
   methods:{
-        build_url(id){
+    build_url(id){
       if(this.tools.length===0){
         return('')
       }else{

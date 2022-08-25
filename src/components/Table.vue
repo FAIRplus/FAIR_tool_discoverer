@@ -76,12 +76,6 @@
                             ></v-text-field>
                         </v-col>
                         <v-col
-                        cols="0"
-                        sm="0"
-                        md="1"
-                        >
-                        </v-col>
-                        <v-col
                         cols="12"
                         sm="6"
                         md="2"
@@ -95,6 +89,23 @@
                                 regular
                                 dense
                                 label="Type format here"
+                                style="margin-top:.8em"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col
+                        cols="12"
+                        sm="6"
+                        md="2"
+                        class="py-2"
+                        >
+                            <span class="filterTitle">
+                                Curation
+                            </span>
+                            <v-text-field
+                                v-model="curationValues"
+                                regular
+                                dense
+                                label="Type FAIRification here"
                                 style="margin-top:.8em"
                             ></v-text-field>
                         </v-col>
@@ -115,7 +126,7 @@
     class="elevation-0" 
     >
     <template v-slot:[`body`]="{ items }">
-        <tbody>
+        <tbody class="{'caption': $vuetify.breakpoint.mdAndDown}">
         <tr 
             @click="rowSelect(key)" 
             v-for="(item, key) in items" :key="item._id.toString()"
@@ -124,6 +135,7 @@
             <NameCol :name="item.name" />
             <TypeCol :type="item.type" />
             <SourcesCol :itemSources="item.sources_labels" />
+            <CurationCol :curation="item.curation" />
             <DescriptionCol :description="item.description" :selected="selected" :idx="key" />
             <EnumCol 
                 :items="item.edam_topics" 
@@ -175,6 +187,7 @@ import ArrowsCol from './ArrowsCol.vue'
 import NameCol from './NameCol.vue'
 import TypeCol from './TypeCol.vue'
 import SourcesCol from './SourcesCol.vue'
+import CurationCol from './CurationCol.vue'
 import DescriptionCol from './DescriptionCol.vue'
 import EnumCol from './EnumCol.vue'
 import PublicationsCol from './PublicationsCol.vue'
@@ -191,6 +204,7 @@ export default {
         NameCol,
         TypeCol,
         SourcesCol,
+        CurationCol,
         DescriptionCol,
         EnumCol,
         PublicationsCol,
@@ -236,6 +250,18 @@ export default {
                     filter: value => {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
                         }
+                },
+                {
+                    text: 'Curation', 
+                    value: 'curation', 
+                    width: '6rem',
+                    filter: value => {
+                        if( value != undefined && this.curationValues != null ){
+                            return this.filterDataType(this.curationValues, value)
+                        }else{
+                            return value
+                        }
+                    }
                 },
                 {text: 'Description', value: 'description', width: '13rem'},
                 {text: 'Related Topics', value: 'edam_topics', width: '8rem'},
@@ -382,7 +408,7 @@ export default {
 
 .v-data-table.v-data-table.v-data-table >>> td  {
   font-size: smaller !important;
-  padding: .5em .5em 1em 1em;
+  padding: .5em .5em 1em 1em
 }
 
 #url{
