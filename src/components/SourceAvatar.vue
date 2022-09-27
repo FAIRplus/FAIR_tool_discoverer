@@ -6,9 +6,8 @@
             v-bind="attrs"
             v-on="on"
             v-bind:color="avatarProps.color"
-            size="20"
-            class="avatar-source"
-            align="center"
+            size="24"
+            class="ma-0 pa-0"
             >
             <v-img :src="require(`@/assets/img/${avatarProps.src}`)"></v-img>
           </v-avatar>
@@ -18,12 +17,6 @@
       </v-tooltip>
 </template>
 
-<style scoped>
-.avatar-source{
-  margin-top: 0.4em;
-  margin-right: 0.2em;
-}
-</style>
 
 <script>
 export default {

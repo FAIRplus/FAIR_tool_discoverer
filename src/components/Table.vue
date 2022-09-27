@@ -114,79 +114,82 @@
                 </v-container>
             </v-form>
         </v-card >
-    <v-data-table
-    v-model="rowSelect"
-    :headers="headers"
-    :items="tools"
-    :items-per-page="10"
-    :search="search"
-    :sort-by="['score']"
-    :sort-desc="[true]"
-    multi-sort
-    class="elevation-0" 
-    >
-    <template v-slot:[`body`]="{ items }">
-        <tbody class="{'caption': $vuetify.breakpoint.mdAndDown}">
-        <tr 
-            @click="rowSelect(key)" 
-            v-for="(item, key) in items" :key="item._id.toString()"
-        >
-            <ArrowsCol :down="arrowsDownShow(key, item.name)" :up="arrowsUpShow(key, item.name)"/>
-            <NameCol :name="item.name" />
-            <TypeCol :type="item.type" />
-            <SourcesCol :itemSources="item.sources_labels" />
-            <CurationCol :curation="item.curation" />
-            <DescriptionCol :description="item.description" :selected="selected" :idx="key" />
-            <EnumCol 
-                :items="item.edam_topics" 
-                :selected="selected" 
-                :arrowsUp="arrowsUpShow(key, item.name)"
-                :idx="key" />
-            <EnumCol 
-                :items="item.edam_operations"
-                :selected="selected"
-                :arrowsUp="arrowsUpShow(key, item.name)"
-                :idx="key"/>
-            <!-- Put following cells (input data types and output data types) as separate components-->
-            <td>
-                <ul>
-                    <li v-for="format in item.input_format_labels" :key="item.input_format_labels.indexOf(format)">
-                    {{ format }}
-                    </li>
-                    <span v-if="dots">...</span>                      
-                </ul>
-            </td>
+    <div >
+        <v-data-table
+            v-model="rowSelect"
+            :headers="headers"
+            :items="tools"
+            :items-per-page="10"
+            :search="search"
+            :sort-by="['score']"
+            :sort-desc="[true]"
+            :fixed_header="true"
+            no-data-text="No tools found"
+            multi-sort
+            class="elevation-0"
 
-            <td>
-                <ul>
-                    <li v-for="format in item.output_format_labels" :key="item.output_format_labels.indexOf(format)">
-                    {{ format }}
-                    </li>
-                    <span v-if="dots">...</span>                      
-                </ul>
-            </td>
+            >
+            <template v-slot:[`body`]="{ items }">
+                <tbody class="{'caption': $vuetify.breakpoint.mdAndDown}">
+                <tr 
+                    @click="rowSelect(key)" 
+                    v-for="(item, key) in items" :key="item._id.toString()"
+                >
+                    <ArrowsCol :down="arrowsDownShow(key, item.name)" :up="arrowsUpShow(key, item.name)"/>
+                    <NameCol :name="item.name" :sources="item.sources_labels" />
+                    <TypeCol :type="item.type" />
+                    <CurationCol :curation="item.curation" />
+                    <DescriptionCol :description="item.description" :selected="selected" :idx="key" />
+                    <EnumCol 
+                        :items="item.edam_topics" 
+                        :selected="selected" 
+                        :arrowsUp="arrowsUpShow(key, item.name)"
+                        :idx="key" />
+                    <EnumCol 
+                        :items="item.edam_operations"
+                        :selected="selected"
+                        :arrowsUp="arrowsUpShow(key, item.name)"
+                        :idx="key"/>
+                    <!-- Put following cells (input data types and output data types) as separate components-->
+                    <td>
+                        <ul>
+                            <li v-for="format in item.input_format_labels" :key="item.input_format_labels.indexOf(format)">
+                            {{ format }}
+                            </li>
+                            <span v-if="dots">...</span>                      
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <li v-for="format in item.output_format_labels" :key="item.output_format_labels.indexOf(format)">
+                            {{ format }}
+                            </li>
+                            <span v-if="dots">...</span>                      
+                        </ul>
+                    </td>
 
 
-            <PublicationsCol :item="item" :idx="key" />
-            <CitationsCol :pubPlotProps='item' />
+                    <PublicationsCol :item="item" :idx="key" />
+                    <CitationsCol :pubPlotProps='item' />
 
-            <LicenseCol :licenses="item.license"  />
-            <ScoreCol :score="item.score" />
+                    <LicenseCol :licenses="item.license"  />
+                    <ScoreCol :score="item.score" id="last"/>
 
-        </tr>
-        </tbody>
-    </template>
-    </v-data-table>
+                </tr>
+                </tbody>
+            </template>
+            </v-data-table>
+    </div>
+    
     </div>
 </template>
 
 <script>
-
 import FilterBtn from './FilterBtn.vue'
 import ArrowsCol from './ArrowsCol.vue'
 import NameCol from './NameCol.vue'
 import TypeCol from './TypeCol.vue'
-import SourcesCol from './SourcesCol.vue'
 import CurationCol from './CurationCol.vue'
 import DescriptionCol from './DescriptionCol.vue'
 import EnumCol from './EnumCol.vue'
@@ -194,6 +197,7 @@ import PublicationsCol from './PublicationsCol.vue'
 import CitationsCol from './CitationsCol.vue'
 import LicenseCol from './LicenseCol.vue'
 import ScoreCol from './ScoreCol.vue'
+
 
 export default {
     name : 'Table',
@@ -203,7 +207,6 @@ export default {
         ArrowsCol,
         NameCol,
         TypeCol,
-        SourcesCol,
         CurationCol,
         DescriptionCol,
         EnumCol,
@@ -231,10 +234,25 @@ export default {
         }
     }, 
     computed: {
+        options () {
+            return {
+            duration: 3,
+            offset: 2,
+            }
+        },
         headers () {
             return [
                 {text: '', align: 'start', sortable: false, value: 'down', width: '1em'},
-                {text: 'Tool Name', align: 'start', sortable: false, value: 'name', width: '3rem'},
+                {
+                    text: 'Tool Name', 
+                    align: 'start', 
+                    sortable: false, 
+                    value: 'source', 
+                    width: '3rem',
+                    filter: value => {
+                        return this.filter(this.toggle_sources, this.sourceMapping, value)
+                    }
+                },
                 {
                     text: 'Type of Software', 
                     value: 'type', 
@@ -244,17 +262,10 @@ export default {
                     }
                 },
                 {
-                    text: 'Availability', 
-                    value: 'source', 
-                    width: '6rem', 
-                    filter: value => {
-                        return this.filter(this.toggle_sources, this.sourceMapping, value)
-                        }
-                },
-                {
                     text: 'Curation', 
                     value: 'curation', 
                     width: '6rem',
+                    filterable: true,
                     filter: value => {
                         if( value != undefined && this.curationValues != null ){
                             return this.filterDataType(this.curationValues, value)
@@ -397,7 +408,10 @@ export default {
 </script>
 
 <style scoped>
-
+.drag {
+    overflow: hidden;
+    display: block
+}
 .v-data-table >>> th {
   font-size: smaller !important; 
 }

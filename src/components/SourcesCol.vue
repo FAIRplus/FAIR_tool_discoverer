@@ -1,12 +1,25 @@
 <template>
-    <td>
-        <SourceAvatar 
-            v-for="source in avatars"
-            :key="source.content" 
-            :avatarProps="source"
-            :sources_labels="itemSources" />
-    </td>
+    <div>
+        <v-row
+            justify="start">
+            <v-col
+                v-for="source in avatars"
+                :key="source.label"
+                v-if="avatars_active.includes(source.label)"
+                cols="1"
+                class="mr-1 ml-1"
+                >
+                <SourceAvatar 
+                :key="source.content" 
+                :avatarProps="source"
+                :sources_labels="itemSources" 
+                />
+            </v-col>
+        </v-row>
+    </div>
+       
 </template>
+
 
 <script>
 import SourceAvatar from './SourceAvatar.vue'
@@ -17,8 +30,14 @@ export default {
     components : {
         SourceAvatar
     },
+    
+    created() {
+        this.avatars_active = Object.keys(this.itemSources)
+        
+    },
     data(){
         return {
+            avatars_active: [],
             avatars: {
                 biotools: {
                     src:'elixir-logo.svg',
@@ -82,6 +101,3 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
