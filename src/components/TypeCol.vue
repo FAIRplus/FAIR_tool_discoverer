@@ -1,7 +1,8 @@
 <template>
-  <td>
+    <div class="text-overline">
       {{ dictGet(type).hover }}
-  </td>
+    </div>
+  
 </template>
 
 <script>
@@ -13,7 +14,7 @@ export default {
             typesAbb: {
                 'cmd' : {
                 'text': 'CMD',
-                'hover': 'Command-line Tool'
+                'hover': 'Command-line'
                 },
                 'web': {
                 'text': 'Web',
@@ -43,6 +44,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.text-overline {
+    font-size: 0.25rem;
+    font-weight: 500;
+    line-height: 2;
+    letter-spacing: 0.07633em !important;
+    text-transform: uppercase;
+};
+
 
 </style>

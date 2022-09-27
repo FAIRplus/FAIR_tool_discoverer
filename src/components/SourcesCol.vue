@@ -10,10 +10,10 @@
                 class="mr-1 ml-1"
                 >
                 <SourceAvatar 
-                :key="source.content" 
-                :avatarProps="source"
-                :sources_labels="itemSources" 
-                />
+                    :key="source.content" 
+                    :avatarProps="source"
+                    :sources_labels="itemSources" 
+                    />
             </v-col>
         </v-row>
     </div>

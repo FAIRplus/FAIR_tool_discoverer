@@ -1,11 +1,23 @@
 <template>
     <td>
-        <ul>
-            <li v-for="(item) in elementsList" :key="items.indexOf(item)">
-            {{ item.label }}
-            </li>
+        <v-chip-group
+            active-class="primary--text"
+            column
+            >
+                <v-chip
+                    v-for="(item) in elementsList" 
+                    :key="items.indexOf(item)"
+                    small
+                    outlined
+                    label
+                    :href="edamBrowserLink(item.uri)" 
+                    target="_blank"
+                    class="chip-truncated">
+                    {{ item.label }}
+                </v-chip>
+            
             <span v-if="dots">...</span>                      
-        </ul>
+          </v-chip-group>        
     </td>
 </template>
 
@@ -31,6 +43,11 @@ export default {
         }
     },
     methods: {
+        edamBrowserLink(uri){
+            var id = uri.split('/').pop()
+            var URL = 'https://edamontology.github.io/edam-browser/#' + id
+            return URL
+        },
         trimListIfNotSelected(list, idx){
             if(this.selected === idx){
                 return(list)
@@ -43,6 +60,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.chip-truncated{
+    height: auto;
+    white-space: normal;
+}
 
 </style>

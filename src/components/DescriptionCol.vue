@@ -26,7 +26,7 @@ export default {
                 return(value)
             }else{
                 if(value.length > 320){
-                    var short = `${value.substring(0,320)} ...`
+                    var short = `${value.substring(0,380)} ...`
                 }else{
                  return(value)
                 }
@@ -34,13 +34,13 @@ export default {
             }
         },
         descriptionSpan(description){
-            const html = `<span>${description}</span>`
+            const html = `<small>${description}</small>`
             return(html)
         },
     }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

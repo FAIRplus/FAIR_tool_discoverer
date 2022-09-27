@@ -1,9 +1,12 @@
 <template>
     <td>
+        <CitationsPlot :pubPlotProps="item" />
         <ul>
             <div v-for="(pdata, idx) in build_pubs(item)" :key="idx" class='publications'>
                 <v-icon class='fas fa-circle' :color = 'pdata.color' size="10"></v-icon> 
-                <span v-html="pdata['label']" />
+                <small>
+                    <span v-html="pdata['label']" />
+                </small>
                 <a v-for="(link, idx) in pdata['links']" :key="idx"  :href="link" target="_blank">  
                     <i class='fas fa-external-link-alt' size="3"></i>
                 </a>
@@ -13,9 +16,14 @@
 </template>
 
 <script>
+import CitationsPlot from './CitationsPlot.vue'
+
 export default {
     name: 'PublicationsCol',
     props: ['item', 'idx'],
+    components : {
+        CitationsPlot
+    },
     data() {
         return {
             linksURLs: [
@@ -100,7 +108,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .publications >>> .fas{
   padding-right: .15em;
   padding-left: .15em;

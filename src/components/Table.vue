@@ -119,7 +119,7 @@
             v-model="rowSelect"
             :headers="headers"
             :items="tools"
-            :items-per-page="10"
+            :items-per-page="8"
             :search="search"
             :sort-by="['score']"
             :sort-desc="[true]"
@@ -136,10 +136,10 @@
                     v-for="(item, key) in items" :key="item._id.toString()"
                 >
                     <ArrowsCol :down="arrowsDownShow(key, item.name)" :up="arrowsUpShow(key, item.name)"/>
-                    <NameCol :name="item.name" :sources="item.sources_labels" />
-                    <TypeCol :type="item.type" />
-                    <CurationCol :curation="item.curation" />
+                    <NameCol :name="item.name" :sources="item.sources_labels" :type="item.type" />
+                    <td class="empty"></td> <!-- empty column for the type. Necessary for the filtering to work -->
                     <DescriptionCol :description="item.description" :selected="selected" :idx="key" />
+                    <CurationCol :curation="item.curation" />
                     <EnumCol 
                         :items="item.edam_topics" 
                         :selected="selected" 
@@ -151,27 +151,19 @@
                         :arrowsUp="arrowsUpShow(key, item.name)"
                         :idx="key"/>
                     <!-- Put following cells (input data types and output data types) as separate components-->
-                    <td>
-                        <ul>
-                            <li v-for="format in item.input_format_labels" :key="item.input_format_labels.indexOf(format)">
-                            {{ format }}
-                            </li>
-                            <span v-if="dots">...</span>                      
-                        </ul>
-                    </td>
-
-                    <td>
-                        <ul>
-                            <li v-for="format in item.output_format_labels" :key="item.output_format_labels.indexOf(format)">
-                            {{ format }}
-                            </li>
-                            <span v-if="dots">...</span>                      
-                        </ul>
-                    </td>
-
+                    <EnumCol 
+                        :items="item.input_format_labels"
+                        :selected="selected"
+                        :arrowsUp="arrowsUpShow(key, item.name)"
+                        :idx="key"/>
+                    
+                    <EnumCol 
+                        :items="item.output_format_labels"
+                        :selected="selected"
+                        :arrowsUp="arrowsUpShow(key, item.name)"
+                        :idx="key"/>
 
                     <PublicationsCol :item="item" :idx="key" />
-                    <CitationsCol :pubPlotProps='item' />
 
                     <LicenseCol :licenses="item.license"  />
                     <ScoreCol :score="item.score" id="last"/>
@@ -193,8 +185,8 @@ import TypeCol from './TypeCol.vue'
 import CurationCol from './CurationCol.vue'
 import DescriptionCol from './DescriptionCol.vue'
 import EnumCol from './EnumCol.vue'
+import InputCol from './InputCol.vue'
 import PublicationsCol from './PublicationsCol.vue'
-import CitationsCol from './CitationsCol.vue'
 import LicenseCol from './LicenseCol.vue'
 import ScoreCol from './ScoreCol.vue'
 
@@ -210,8 +202,8 @@ export default {
         CurationCol,
         DescriptionCol,
         EnumCol,
+        InputCol,
         PublicationsCol,
-        CitationsCol,
         LicenseCol,
         ScoreCol
     },
@@ -219,6 +211,7 @@ export default {
         return {
             inputValues: null,
             outputValues: null,
+            curationValues: null,
             toggle_sources: [0,1,2,3,4,5,6],
             toggle_types: [0,1,2,3,4],
             activeResults: true,
@@ -242,25 +235,26 @@ export default {
         },
         headers () {
             return [
-                {text: '', align: 'start', sortable: false, value: 'down', width: '1em'},
+                {text: '', align: 'start', sortable: false, value: 'name', width: '0.6em'},
                 {
                     text: 'Tool Name', 
                     align: 'start', 
                     sortable: false, 
                     value: 'source', 
-                    width: '3rem',
+                    width: '2.5rem',
                     filter: value => {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
                     }
                 },
                 {
-                    text: 'Type of Software', 
+                    text: '', 
                     value: 'type', 
-                    width: '6rem',
+                    width: '0px',
                     filter: value => {
                         return this.filter(this.toggle_types, this.typeMapping, value)
                     }
                 },
+                {text: 'Description', value: 'description', width: '15rem'},
                 {
                     text: 'Curation', 
                     value: 'curation', 
@@ -274,13 +268,12 @@ export default {
                         }
                     }
                 },
-                {text: 'Description', value: 'description', width: '13rem'},
-                {text: 'Related Topics', value: 'edam_topics', width: '8rem'},
-                {text: 'Functionality', value: 'edam_operations', width: '8rem'},
+                {text: 'Related Topics', value: 'edam_topics', width: '9rem'},
+                {text: 'Functionality', value: 'edam_operations', width: '9rem'},
                 {
                     text: 'Input Data Format', 
-                    value: 'input_format_labels', 
-                    width: '8rem',
+                    value: 'input_formats', 
+                    width: '9rem',
                     filter: value => {
                         if( value != undefined && this.inputValues != null ){
                             return this.filterDataType(this.inputValues, value)
@@ -291,8 +284,8 @@ export default {
                 },
                 {
                     text: 'Output Data Format', 
-                    value: 'output_format_labels', 
-                    width: '8rem',
+                    value: 'output_formats', 
+                    width: '9rem',
                     filter: value => {
                         if( value != undefined && this.outputValues != null ){
                             return this.filterDataType(this.outputValues, value)
@@ -301,8 +294,7 @@ export default {
                         }
                     }
                 },
-                {text: 'Publications', value: 'publications', width: '13rem'},
-                {text: 'Number of Citations', value: 'publications',  width: '13rem'},
+                {text: 'Publications', value: 'publications', width: '15rem'},
                 {text: 'License', value: 'license', width: '5rem'},
                 {text: 'Score', value: 'score', width: '3rem'}
                 ]
@@ -322,15 +314,26 @@ export default {
     })},
     methods : {
         filterDataType(inputValues, value){
-            console.log(value)
-            const overlapArray = [inputValues].filter(item => value.includes(item))
-            /* If overlap, show tool */
-            console.log(overlapArray)
-            if(overlapArray.length>0){
+            if(inputValues === ''){
                 return value
             }else{
-                return false
-            }   
+                console.log('Input Values:')
+                console.log(inputValues)
+                console.log('Value:')
+                console.log(value)
+                
+                const overlapArray = value.filter(item => item.toLowerCase().includes(inputValues.toLowerCase()))
+                /* If overlap, show tool */
+                console.log('Overlap:')
+                console.log(overlapArray)
+
+                if(overlapArray.length>0){
+                    return value
+                }else{
+                    return false
+                }   
+            }
+           
 
         },
         filter(toggleArray, mappingFunct, value){
@@ -408,6 +411,14 @@ export default {
 </script>
 
 <style scoped>
+
+
+
+.chip-truncated{
+    height: auto;
+    white-space: normal;
+}
+
 .drag {
     overflow: hidden;
     display: block
@@ -422,7 +433,9 @@ export default {
 
 .v-data-table.v-data-table.v-data-table >>> td  {
   font-size: smaller !important;
-  padding: .5em .5em 1em 1em
+  margin: 0px !important;
+  padding-right: .5rem;
+  padding-left: .5rem;
 }
 
 #url{
@@ -435,5 +448,9 @@ export default {
   text-indent: .7rem;
 }
 
-
+.empty {
+    padding: 0 0 0 0 !important;
+    margin: 0px;
+    width: 2px !important;
+}
 </style>
