@@ -1,19 +1,17 @@
 <template>
     <td>
         <v-chip-group
-            active-class="primary--text"
-            column
-            >
+            column>
                 <v-chip
                     v-for="(item) in elementsList" 
                     :key="items.indexOf(item)"
                     small
+                    flex
                     outlined
-                    label
                     :href="edamBrowserLink(item.uri)" 
                     target="_blank"
-                    class="chip-truncated">
-                    {{ item.label }}
+                    >
+                   {{ item.label }}
                 </v-chip>
             
             <span v-if="dots">...</span>                      
@@ -62,9 +60,19 @@ export default {
 
 <style scoped>
 
-.chip-truncated{
-    height: auto;
-    white-space: normal;
+
+.v-chip {
+  height: auto !important;
+  min-width: 0;
+  box-sizing: border-box;
 }
+
+.v-chip >>> .v-chip__content {
+    white-space: normal;
+    height: auto !important;
+    flex-shrink: 3 !important;
+    text-align: center;
+}
+
 
 </style>

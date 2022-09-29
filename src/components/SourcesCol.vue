@@ -3,9 +3,8 @@
         <v-row
             justify="start">
             <v-col
-                v-for="source in avatars"
+                v-for="source in avatars_present"
                 :key="source.label"
-                v-if="avatars_active.includes(source.label)"
                 cols="1"
                 class="mr-1 ml-1"
                 >
@@ -30,14 +29,16 @@ export default {
     components : {
         SourceAvatar
     },
-    
-    created() {
-        this.avatars_active = Object.keys(this.itemSources)
-        
+
+    computed: {
+        avatars_present(){
+            const filtered = Object.keys(this.itemSources)
+                .reduce((obj, key) => ({ ...obj, [key]: this.avatars[key] }), {});
+            return filtered            
+        }
     },
     data(){
         return {
-            avatars_active: [],
             avatars: {
                 biotools: {
                     src:'elixir-logo.svg',

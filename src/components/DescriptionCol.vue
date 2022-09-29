@@ -1,5 +1,5 @@
 <template>
-    <td>
+    <td class="pt-2 pl-1">
         <span v-html="descriptionHtml"></span>
     </td>
 </template>
@@ -34,7 +34,7 @@ export default {
             }
         },
         descriptionSpan(description){
-            const html = `<small>${description}</small>`
+            const html = `<p class="text-caption">${description}</p>`
             return(html)
         },
     }

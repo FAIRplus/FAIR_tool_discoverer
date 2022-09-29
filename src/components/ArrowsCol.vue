@@ -13,7 +13,9 @@ export default {
 </script>
 
 <style>
+
+
 .cell-arrow{
-  color: darkgray;
+    color: darkgray;
 }
 </style>

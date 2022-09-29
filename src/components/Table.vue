@@ -1,11 +1,13 @@
 <template>
     <div>
-        <v-card elevation="2" style="margin-bottom:4em; margin-top:2em">
+        <v-card 
+            elevation="2" 
+            class="mb-4 mt-2">
             <v-form>
                 <v-container>
                     <v-row>
                         <v-col cols="12" class="py-2">
-                        <h5>
+                        <h5 class="text-subtitle-1">
                             Filters
                         </h5>
                         </v-col>
@@ -13,10 +15,10 @@
                         <v-col
                         cols="12"
                         sm="6"
-                        md="3"
+                        md="4"
                         class="py-2"
                         >   
-                            <span class="filterTitle">
+                            <span class="text-subtitle-2 filterTitle">
                             Availability
                             </span>
                             <v-btn-toggle
@@ -34,20 +36,20 @@
                             </v-btn-toggle>
                         </v-col>
                         <v-col
-                        cols="12"
-                        sm="6"
-                        md="3"
-                        class="py-2"
-                        >    
-                        <span class="filterTitle">
-                            Type of Software
-                        </span>
+                            cols="12"
+                            sm="6"
+                            md="3"
+                            class="py-2"
+                            >    
+                            <span class="text-subtitle-2 filterTitle">
+                                Type of Software
+                            </span>
                             <v-btn-toggle
                                 v-model="toggle_types"
                                 multiple
                                 dense
                                 group
-                                class="flex-wrap" 
+                                class="flex-wrap"
                             >   
                                 <FilterBtn  
                                     v-for="item in filtersMapping.types" 
@@ -57,64 +59,39 @@
 
                             </v-btn-toggle>
                         </v-col>
-
                         <v-col
-                        cols="12"
-                        sm="6"
-                        md="2"
-                        class="py-2"
-                        >
-                            <span class="filterTitle">
-                                Input Data Format
-                            </span>
+                            cols="12"
+                            sm="6"
+                            md="4"
+                            class="pt-2"
+                            >   
+
                             <v-text-field
                                 v-model="inputValues"
                                 regular
-                                dense
-                                label="Type format here"
-                                style="margin-top:.8em"
-                            ></v-text-field>
-                        </v-col>
-                        <v-col
-                        cols="12"
-                        sm="6"
-                        md="2"
-                        class="py-2"
-                        >
-                            <span class="filterTitle">
-                                Output Data Format
-                            </span>
+                                label="Input Data format"
+                                class="mt-0 pt-0"
+                                ></v-text-field>
+
+
                             <v-text-field
                                 v-model="outputValues"
                                 regular
-                                dense
-                                label="Type format here"
-                                style="margin-top:.8em"
-                            ></v-text-field>
-                        </v-col>
-                        <v-col
-                        cols="12"
-                        sm="6"
-                        md="2"
-                        class="py-2"
-                        >
-                            <span class="filterTitle">
-                                Curation
-                            </span>
+                                label="Output Data format"
+                                ></v-text-field>
+
                             <v-text-field
                                 v-model="curationValues"
                                 regular
-                                dense
-                                label="Type FAIRification here"
-                                style="margin-top:.8em"
-                            ></v-text-field>
+                                label="FAIRification curated category"
+                                ></v-text-field>
                         </v-col>
 
                     </v-row>
                 </v-container>
             </v-form>
         </v-card >
-    <div >
+    
         <v-data-table
             v-model="rowSelect"
             :headers="headers"
@@ -135,22 +112,42 @@
                     @click="rowSelect(key)" 
                     v-for="(item, key) in items" :key="item._id.toString()"
                 >
-                    <ArrowsCol :down="arrowsDownShow(key, item.name)" :up="arrowsUpShow(key, item.name)"/>
-                    <NameCol :name="item.name" :sources="item.sources_labels" :type="item.type" />
-                    <td class="empty"></td> <!-- empty column for the type. Necessary for the filtering to work -->
-                    <DescriptionCol :description="item.description" :selected="selected" :idx="key" />
-                    <CurationCol :curation="item.curation" />
+                    <!-- first column for arrow and type. Type is not displayed here, but is necessary for the filtering to work -->
+                
+                    <ArrowsCol 
+                        :down="arrowsDownShow(key, item.name)" 
+                        :up="arrowsUpShow(key, item.name)"
+                        />
+
+                    <NameCol 
+                        :name="item.name" 
+                        :sources="item.sources_labels" 
+                        :type="item.type"
+                        />
+
+                    <DescriptionCol 
+                        :description="item.description" 
+                        :selected="selected" 
+                        :idx="key" 
+                        />
+
+                    <CurationCol 
+                        :curation="item.curation" 
+                        />
+
                     <EnumCol 
                         :items="item.edam_topics" 
                         :selected="selected" 
                         :arrowsUp="arrowsUpShow(key, item.name)"
                         :idx="key" />
+                    
                     <EnumCol 
                         :items="item.edam_operations"
                         :selected="selected"
                         :arrowsUp="arrowsUpShow(key, item.name)"
                         :idx="key"/>
-                    <!-- Put following cells (input data types and output data types) as separate components-->
+                    
+                        <!-- Put following cells (input data types and output data types) as separate components-->
                     <EnumCol 
                         :items="item.input_format_labels"
                         :selected="selected"
@@ -172,24 +169,20 @@
                 </tbody>
             </template>
             </v-data-table>
-    </div>
     
-    </div>
+        </div>
 </template>
 
 <script>
 import FilterBtn from './FilterBtn.vue'
 import ArrowsCol from './ArrowsCol.vue'
 import NameCol from './NameCol.vue'
-import TypeCol from './TypeCol.vue'
 import CurationCol from './CurationCol.vue'
 import DescriptionCol from './DescriptionCol.vue'
 import EnumCol from './EnumCol.vue'
-import InputCol from './InputCol.vue'
 import PublicationsCol from './PublicationsCol.vue'
 import LicenseCol from './LicenseCol.vue'
 import ScoreCol from './ScoreCol.vue'
-
 
 export default {
     name : 'Table',
@@ -198,14 +191,13 @@ export default {
         FilterBtn,
         ArrowsCol,
         NameCol,
-        TypeCol,
         CurationCol,
         DescriptionCol,
         EnumCol,
-        InputCol,
         PublicationsCol,
         LicenseCol,
-        ScoreCol
+        ScoreCol,
+
     },
     data() {
         return {
@@ -235,7 +227,16 @@ export default {
         },
         headers () {
             return [
-                {text: '', align: 'start', sortable: false, value: 'name', width: '0.6em'},
+                {
+                    text: '', 
+                    align: 'start', 
+                    sortable: false, 
+                    value: 'type', 
+                    width: '1%',
+                    filter: value => {
+                        return this.filter(this.toggle_types, this.typeMapping, value)
+                    }
+                },
                 {
                     text: 'Tool Name', 
                     align: 'start', 
@@ -244,14 +245,6 @@ export default {
                     width: '2.5rem',
                     filter: value => {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
-                    }
-                },
-                {
-                    text: '', 
-                    value: 'type', 
-                    width: '0px',
-                    filter: value => {
-                        return this.filter(this.toggle_types, this.typeMapping, value)
                     }
                 },
                 {text: 'Description', value: 'description', width: '15rem'},
@@ -268,8 +261,8 @@ export default {
                         }
                     }
                 },
-                {text: 'Related Topics', value: 'edam_topics', width: '9rem'},
-                {text: 'Functionality', value: 'edam_operations', width: '9rem'},
+                {text: 'Related Topics', value: 'edam_topics', width: '8rem'},
+                {text: 'Functionality', value: 'edam_operations', width: '8rem'},
                 {
                     text: 'Input Data Format', 
                     value: 'input_formats', 
@@ -413,7 +406,6 @@ export default {
 <style scoped>
 
 
-
 .chip-truncated{
     height: auto;
     white-space: normal;
@@ -423,19 +415,22 @@ export default {
     overflow: hidden;
     display: block
 }
-.v-data-table >>> th {
-  font-size: smaller !important; 
-}
 
 .v-data-table.v-data-table.v-data-table >>> tr:hover  {
   background-color: white !important;
 }
 
 .v-data-table.v-data-table.v-data-table >>> td  {
-  font-size: smaller !important;
   margin: 0px !important;
-  padding-right: .5rem;
-  padding-left: .5rem;
+  padding-right: .2rem;
+  padding-left: .2rem;
+}
+.v-text-field >>> label {
+    font-size: 0.9em;
+}
+
+.v-text-field >>> input {
+    font-size: 1em;
 }
 
 #url{
@@ -444,13 +439,10 @@ export default {
   margin-right: auto;
   margin-left: auto;
 }
+
 #url p{
   text-indent: .7rem;
 }
 
-.empty {
-    padding: 0 0 0 0 !important;
-    margin: 0px;
-    width: 2px !important;
-}
+
 </style>
