@@ -11,7 +11,7 @@
               cache-items
               placeholder="Start typing to search EDAM terms"
               prepend-icon="mdi-magnify-expand"
-              background-color="#f5f5f5"
+              background-color="#ECEFF1"
               :loading="isLoading"
               label=""
               chips
@@ -57,7 +57,7 @@
           </v-col>
           <v-col cols="1">
             <v-btn
-                color="#5750AA"
+                color="#3949AB"
                 dark
                 id='add-btn'
                 @click="addItem"
@@ -79,7 +79,7 @@
                       :disabled="!item['isEditing']"
                       class="mt-0 pt-0"
                       single-line
-                      color="purple darken-2"
+                      color="#3949AB"
                       background-color='white'
                       filled
                       hide-details="auto"
@@ -94,7 +94,7 @@
                     class="mt-0 pt-0"
                     single-line
                     align="right"
-                    color="purple darken-2"
+                    color="#3949AB"
                     background-color='white'
                     filled
                     dense

@@ -3,15 +3,15 @@
 const menuEntries = [
 	{
 		title: 'Discover',
-		to: '/run',
+		to: '/discover',
 	},
 	{
 		title: 'Explore Tools',
-		to: '/fairification',
+		to: '/explore',
 	},
 	{
 		title: 'Help',
-		to: '/Help',
+		to: '/help',
 	},
 ];
 

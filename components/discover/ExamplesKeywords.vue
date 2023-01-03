@@ -3,18 +3,18 @@
   <v-row>
   <v-col cols="14" id='main-col'>
     <v-card elevation="0" id="examples-cont">
-      <p><b>Example keyword lists</b></p>
+      <h5 class="text-subtitle-1 mb-2">Example keyword lists</h5>
       <v-btn 
-      v-for="item in texts" 
-      :key="item.PreferredLabel"
-      dark
-      outlined
-      max-width="13.5em"
-      min-width="4em"
-      min-height="4.5em"
-      small
-      :color="item.color"
-      @click="sampleInput(item.keywords)">
+        v-for="item in texts" 
+        :key="item.PreferredLabel"
+        dark
+        outlined
+        max-width="13.5em"
+        min-width="4em"
+        min-height="4.5em"
+        small
+        :color="item.color"
+        @click="sampleInput(item.keywords)">
         {{ item.label }}
       </v-btn>
     </v-card>
@@ -59,7 +59,6 @@
 .v-card > p{
   font-size: 1.1rem;
   color: #454545;
-  font-family: 'Lexend Deca'
 }
 
 .row > p{
@@ -82,12 +81,12 @@ export default {
   props: [],
   data() {
     return {
-      texts: [{'label':'Ontology Annotation','color': '#ad6911', 'keywords': OntoAnno},
-      {'label':'Ontology Management','color': '#ad6911', 'keywords': OntoMag},
-      {'label':'Ontology Engineering', 'color': '#ad6911', 'keywords': OntoEng},
-      {'label':'Identifier Minting', 'color': '#8A2549', 'keywords': IDminting},
-      {'label':'Identifier Mapping', 'color': '#8A2549', 'keywords': IdMap},
-      {'label':'Extract, Transform, Load', 'color': '#484848','keywords': ETL}],
+      texts: [{'label':'Ontology Annotation','color': '#3949AB', 'keywords': OntoAnno},
+      {'label':'Ontology Management','color': '#5C6BC0', 'keywords': OntoMag},
+      {'label':'Ontology Engineering', 'color': '#283593', 'keywords': OntoEng},
+      {'label':'Identifier Minting', 'color': '#3949AB', 'keywords': IDminting},
+      {'label':'Identifier Mapping', 'color': '#5C6BC0', 'keywords': IdMap},
+      {'label':'Extract, Transform, Load', 'color': '#283593','keywords': ETL}],
     }
   },
   methods: {

@@ -1,9 +1,9 @@
 <template>
-    <div class="container run_main">
-      <v-row class='first-parag'>
-          <h4>Discover Tools</h4>
-      </v-row >
-      <p>Introduce search terms and respective weights (optionally).</p>
+    <v-container class="run_main">
+      <v-row class='first-parag mt-5 mb-3'>
+          <h4 class="text-h5">Discover Tools</h4>
+      </v-row>
+      <p class="text-body-2 mb-10">Introduce search terms and respective weights (optionally).</p>
       <InputArea @click='runDiscoverer'/>
         <div class="main-results">
           <div v-if=querying style="min-height: 4px;">
@@ -15,19 +15,18 @@
               :query="true"
             ></v-progress-linear>
           </div>
-          <div v-if="results"><Results :tools="results.result" :inputParameters="results.input_parameters" :run_id="results.run_id" /></div>
+          <!--div v-if="results"><Results :tools="results.result" :inputParameters="results.input_parameters" :run_id="results.run_id" /></div>
           <div v-if="results_not_found" class='center_img' id="not_foundm"><img src="@/assets/img/not_found.svg" width="50px"> No tools found for those keywords</div>
-          <div v-if="error" class='center_img' id="errorm"><img src="@/assets/img/error.svg" width="50px"> Something went wrong while fetching results</div>
+          <div v-if="error" class='center_img' id="errorm"><img src="@/assets/img/error.svg" width="50px"> Something went wrong while fetching results</div-->
         </div>
-  </div>
+    </v-container>
   </template>
   <script>
   import InputArea from '../components/discover/InputArea.vue'
   import axios from 'axios'
   export default {
-    name: 'Discover',
+    name: 'discover',
     components: {
-      Results,
       InputArea
     },
     created() {
@@ -180,11 +179,9 @@
     margin-bottom: 2em;
     font-size: .9rem;
     width: 100%;
-    font-family: "Lexend";
+
   }
-  .first-parag{
-    margin-bottom: 2em
-  }
+
   .center_img img{
     display: block;
     margin-left: auto;
