@@ -7,7 +7,7 @@ const moreOptions = [
         icon: 'mdi-information-outline',
     },
     {
-        title: 'GitHub',
+        title: 'Source Code',
         to: 'https://github.com',
         icon: 'mdi-github',
     },

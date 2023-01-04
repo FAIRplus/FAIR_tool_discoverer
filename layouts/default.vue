@@ -3,11 +3,21 @@
     <main-header />
     <v-main> 
       <Nuxt />
-      <Footer />
     </v-main>
+    <v-footer class="footer">
+      <Footer />
+    </v-footer>
   </v-app>
 </template>
 <style>
+  .v-footer {
+    padding-top: 1%;
+    font-size: smaller;
+    margin-top: auto;
+    width: 100%;
+    position: static;
+    bottom:0;
+  }
 
 
 

@@ -3,10 +3,13 @@
       <v-row class='first-parag mt-5 mb-3'>
           <h4 class="text-h5">Discover Tools</h4>
       </v-row>
+      
       <p class="text-body-2 mb-10">Introduce search terms and respective weights (optionally).</p>
+      
       <InputArea @click='runDiscoverer'/>
         <div class="main-results">
           <div v-if=querying style="min-height: 4px;">
+
             <!-- query progress bar, see eaxample https://github.com/vuetifyjs/vuetify/blob/master/packages/docs/src/examples/v-progress-linear/prop-query.vue -->
             <v-progress-linear
               v-model="value"
@@ -15,6 +18,7 @@
               :query="true"
             ></v-progress-linear>
           </div>
+           
           <!--div v-if="results"><Results :tools="results.result" :inputParameters="results.input_parameters" :run_id="results.run_id" /></div>
           <div v-if="results_not_found" class='center_img' id="not_foundm"><img src="@/assets/img/not_found.svg" width="50px"> No tools found for those keywords</div>
           <div v-if="error" class='center_img' id="errorm"><img src="@/assets/img/error.svg" width="50px"> Something went wrong while fetching results</div-->
@@ -23,6 +27,7 @@
   </template>
   <script>
   import InputArea from '../components/discover/InputArea.vue'
+  import { mapGetters } from 'vuex'
   import axios from 'axios'
   export default {
     name: 'discover',
@@ -34,115 +39,47 @@
       this.$watch(
         () => this.$route.params,
         () => {
-          this.fetchDataRes()
+            /// Fetch the results from the API and store them in the results variable
+            if(this.$route.params.run_id){
+                this.$store.dispatch('fetchResultsById', this.$route.params.run_id)
+            }
         },
         // fetch the data when the view is created and the data is
         // already being observed
         { immediate: true }
       )
     },
+    computed: {
+        ...mapGetters('data',{
+            inputTextArea : 'getInputTextArea',
+            query: 'getQuery',
+            querying: 'getQuerying',
+            results: 'getResults',
+            results_not_found: 'getResultsNotFound',
+            error: 'getError',
+        })
+    },
     data () {
       return {
-        inputTextarea: '',
         formatErrorVisible: false,
-        lineNum: 0,
-        results: null,
-        querying: false,
         value: 0,
-        query: false,
         show: true,
-        interval: 0,
-        results_not_found: false,
-        error: false,
         terms:[]
       }
     },
     methods: {
-      fetchDataRes() {
-        if(this.$route.params.run_id){
-          this.query = true
-          this.querying = true
-          axios.get('https://fair-tool-discoverer.bsc.es/api/result/fetch', {
-          params : {
-            id : this.$route.params.run_id
-          },
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        .then((response) => {
-          console.log(response.data.message.results)
-          this.results = response.data.message
-          this.results_not_found = !this.results.result_found
-          this.query = false
-          this.querying = false
-          this.error = false
-        })
-        .catch((error) => {
-          console.log(error)
-          this.query = false
-          this.error = true
-          this.querying = false
-        });
-        }else{
-          this.results = null
-        }
-      },
-      clearInput () {
-        this.inputTextarea = ''
-      },
+        clearInput () {
+            this.inputTextarea = ''
+        },
+
+      // Run the discoverer with the terms in textArea 
+      // ----> this is the function that is called when the button is clicked
       async runDiscoverer (terms) {
-        this.results = null
-        this.terms = terms
-        console.log(this.terms)
-        this.formatErrorVisible = false
-        this.querying = true
-        this.query = true
-        this.results_not_found = false
-        this.error = false
-        this.ToolDiscovererCall(terms)
+        console.log(terms)
+        this.$store.dispatch('fetchResultsByQuery', terms)
+        //--> DEAL WITH RESULTS NOT FOUND 👉
         console.log('done')
-      },
-      formatCorrect () {
-        var lines = this.inputTextarea.split(/\r?\n/g)
-        var csvLineRegex = /^([^\r\n;]*),([" *"]?\d+(\.\d+)?)$/
-        for (var i = 0; i < lines.length; i++) {
-          var lineValid = csvLineRegex.test(lines[i])
-          if (lineValid === true) {
-            continue
-          } else {
-            return i + 1
-          }
-        }
-        return true
-      },
-      ToolDiscovererCall (terms) {
-        axios({
-          method: 'post',
-          url: 'https://fair-tool-discoverer.bsc.es/api/',
-          data: {
-            textarea_content: terms
-          },
-          headers: {
-            'Content-Type': 'application/json'
-            }
-        })
-          .then(
-            (response) => {
-              this.results = response.data.message
-              this.querying = false
-              console.log('NO ERROR HERE')
-              this.results_not_found = !this.results.result_found
-              this.error = false
-              })
-          .catch((error) => {
-            console.log(error)
-            this.query = false
-            this.querying = false
-            this.error = true
-            this.results = null
-            })
-      }
+        },
       }
     }
   </script>

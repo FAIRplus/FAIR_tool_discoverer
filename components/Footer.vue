@@ -14,30 +14,11 @@
               This Joint Undertaking receives support from the European Union’s Horizon 2020 research and innovation programme and EFPIA Companies.<br>
               This communication reflects the views of the authors and neither IMI nor the European Union, EFPIA or any Associated Partners are liable for any use that may be made of the information contained herein.
         </div>
-        
     </v-row>
   </v-footer>
 </template>
 
 <style scoped>
-
-
-
-  .v-footer {
-    padding-top: 1%;
-    font-size: smaller;
-    margin-top: auto;
-    width: 100%;
-    position:fixed;
-    bottom:0;
-  }
-
-  .v-footer .item-foot{
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 0%;
-    margin-left: 1em
-  }
 
   .logo{
     margin: 1em;
