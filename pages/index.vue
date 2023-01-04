@@ -1,9 +1,9 @@
 <template>
     <v-container>
       <h4 class="text-h5 text-center mt-10 title">Welcome to the FAIRification Tool Discoverer</h4>
-      <p class="text-body-2 mt-5 mb-10 text-center">
+      <div class="text-body-2 mt-5 mb-10 text-center">
         Discovering tools for your FAIRification tasks
-      </p>
+      </div>
 
       <v-row 
         justify="space-around">
