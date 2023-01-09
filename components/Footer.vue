@@ -1,10 +1,10 @@
 <template>
-  <v-footer class="footer">
+  <v-footer class="pt-0">
     <v-row justify="space-between" class="ma-3 text-caption pr-5 pl-5 text--secondary">
         <div class="item-foot">
-        <a href="https://europa.eu/" target="_blank"><img src="@/assets/img/eu-flag.png" alt="EU flag" class="logo" loading="lazy"></a>
-        <a href="https://www.imi.europa.eu/" target="_blank"><img src="@/assets/img/imi-logo.png" alt="IMI logo" class="logo" loading="lazy"></a>
-        <a href="https://efpia.eu" target="_blank"><img src="@/assets/img/efpia-logo.png" alt="EFPIA logo" class="logo" loading="lazy"></a>
+        <a href="https://europa.eu/" target="_blank"><img src="@/static/img/eu-flag.png" alt="EU flag" class="logo" loading="lazy"></a>
+        <a href="https://www.imi.europa.eu/" target="_blank"><img src="@/static/img/imi-logo.png" alt="IMI logo" class="logo" loading="lazy"></a>
+        <a href="https://efpia.eu" target="_blank"><img src="@/static/img/efpia-logo.png" alt="EFPIA logo" class="logo" loading="lazy"></a>
         </div>
         <div class="item-foot copyright">
          Contact <a href="mailto:inb.hub@bsc.es">inb.hub@bsc.es</a> <br> Copyright © <a href="https://www.bsc.es/" target="_blank">BSC-CNS</a> 2022

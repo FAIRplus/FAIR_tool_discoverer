@@ -1,5 +1,5 @@
 <template>
-    <v-container id="index-main">
+    <v-container>
         <v-row class="mt-8">
             <v-icon color="#3949AB">
                 mdi-help-circle
@@ -74,9 +74,7 @@
 
 .title{
     color: #3949AB !important;
-
 }
-
 
 .link-icon{
     color:#300761;

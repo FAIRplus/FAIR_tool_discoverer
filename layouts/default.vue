@@ -4,22 +4,19 @@
     <v-main> 
       <Nuxt />
     </v-main>
-    <v-footer class="footer">
+    <v-footer class="mt-10">
       <Footer />
     </v-footer>
   </v-app>
 </template>
 <style>
-  .v-footer {
+.v-footer {
     padding-top: 1%;
     font-size: smaller;
-    margin-top: auto;
     width: 100%;
     position: static;
     bottom:0;
   }
-
-
 
 </style>
 <script>

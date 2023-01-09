@@ -1,133 +1,139 @@
 <template>
     <v-container fluid>
-      <v-row>
         <v-row>
-          <v-col cols="6">
-            <v-autocomplete
-              v-model="input"
-              :items="EDAM_items"
-              :search-input.sync="cachedterms"
-              :debounce-search="0"
-              cache-items
-              placeholder="Start typing to search EDAM terms"
-              prepend-icon="mdi-magnify-expand"
-              background-color="#ECEFF1"
-              :loading="isLoading"
-              label=""
-              chips
-              solo
-              hide-no-data
-              hide-selected
-              :item-text="PreferredLabel"
-              :item-value="PreferredLabel"
-              small-chips
-            >
-               <template v-slot:selection="data">
-                  <v-chip
-                        class="ma-2"
-                        label
-                        small
-                        color="grey"
-                        text-color="white"
-                        >
-                        {{ getLabel(data.item) }}
-                      </v-chip>
-                      {{data.item.PreferredLabel}}
-                  </template>
-                <template v-slot:item="data">
-                  <template v-if="typeof data.item !== 'object'">
-                    <v-list-item-content v-text="data.item"></v-list-item-content>
-                  </template>
-                  <template v-else>
-                     <v-chip
-                        class="ma-2"
-                        label
-                        small
-                        color="grey"
-                        text-color="white"
-                        >
-                        {{ getLabel(data.item) }}
-                      </v-chip>
-                    <v-list-item-content>
-                      <v-list-item-title v-html="data.item.PreferredLabel"></v-list-item-title>
-                    </v-list-item-content>
-                  </template>
-                </template>
-            </v-autocomplete>
-          </v-col>
-          <v-col cols="1">
-            <v-btn
-                color="#3949AB"
-                dark
-                id='add-btn'
-                @click="addItem"
-              >
-              <small> ADD TERM <br>TO SEARCH</small><v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-      <v-row>
-        <v-col cols="8">
-          <v-card
-            elevation="1"
-            id='terms-card'>
-            <v-card-text>
-              <v-row v-for="(item) in terms" :key="item">
+            <v-row>
                 <v-col cols="6">
-                  <v-text-field 
-                      v-model="item['label']"
-                      :disabled="!item['isEditing']"
-                      class="mt-0 pt-0"
-                      single-line
-                      color="#3949AB"
-                      background-color='white'
-                      filled
-                      hide-details="auto"
-                      dense
-                    >
-                  </v-text-field>
+                    <v-autocomplete
+                        v-model="input"
+                        :items="EDAM_items"
+                        :search-input.sync="cachedterms"
+                        :debounce-search="0"
+                        cache-items
+                        placeholder="Start typing to search EDAM terms"
+                        background-color="#ECEFF1"
+                        :loading="isLoading"
+                        label=""
+                        chips
+                        solo
+                        hide-no-data
+                        hide-selected
+                        :item-text="PreferredLabel"
+                        :item-value="PreferredLabel"
+                        small-chips
+                        >
+                        <template v-slot:selection="data">
+                            <v-chip
+                                class="ma-2"
+                                label
+                                small
+                                color="grey"
+                                text-color="white"
+                                >
+                                {{ getLabel(data.item) }}
+                            </v-chip>
+                            {{data.item.PreferredLabel}}
+                        </template>
+                        <template v-slot:item="data">
+                            <template v-if="typeof data.item !== 'object'">
+                                <v-list-item-content v-text="data.item"></v-list-item-content>
+                            </template>
+                            <template v-else>
+                                <v-chip
+                                    class="ma-2"
+                                    label
+                                    small
+                                    color="grey"
+                                    text-color="white"
+                                    >
+                                    {{ getLabel(data.item) }}
+                                </v-chip>
+                                {{data.item.PreferredLabel}}
+                                <v-list-item-content>
+                                    <v-list-item-title v-html="data.item.PreferredLabel"></v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                        </template>
+                    </v-autocomplete>
                 </v-col>
-                <v-col cols="2">
-                  <v-text-field 
-                    v-model="item['weight']"
-                    :disabled="!item['isEditing']"
-                    class="mt-0 pt-0"
-                    single-line
-                    align="right"
-                    color="#3949AB"
-                    background-color='white'
-                    filled
-                    dense
-                    hide-details="auto"
-                  >
-                  </v-text-field>
+                <v-col cols="1">
+                    <v-btn
+                        color="#3949AB"
+                        dark
+                        id='add-btn'
+                        @click="addItem"
+                        >
+                        <small> ADD TERM <br>TO SEARCH</small><v-icon>mdi-plus</v-icon>
+                    </v-btn>
                 </v-col>
-                <v-col cols="2">
-                  <EditBtn :isEditing="isEditing" @click='edit(item)' />
-                  <DeleteBtn @click="remove(item)"/>
+            </v-row>
+            <v-row>
+                <v-col cols="7">
+                    <v-card
+                        elevation="1"
+                        id='terms-card'
+                        class="mr-5 pb-4 mb-2"
+                        >
+                        <v-card-text>
+                            <v-row v-for="(item) in terms" :key="item">
+                                <v-col cols="7">
+                                <v-text-field 
+                                    v-model="item['label']"
+                                    :disabled="!item['isEditing']"
+                                    class="mt-0 pt-0"
+                                    single-line
+                                    color="#3949AB"
+                                    background-color='white'
+                                    filled
+                                    hide-details="auto"
+                                    dense
+                                    >
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="2">
+                                    <v-text-field 
+                                        v-model="item['weight']"
+                                        :disabled="!item['isEditing']"
+                                        class="mt-0 pt-0"
+                                        single-line
+                                        align="right"
+                                        color="#3949AB"
+                                        background-color='white'
+                                        filled
+                                        dense
+                                        hide-details="auto"
+                                        >
+                                        </v-text-field>
+                                </v-col>
+                                <v-col cols="2">
+                                    <EditBtn :isEditing="isEditing" @click='edit(item)' />
+                                    <DeleteBtn @click="remove(item)"/>
+                                </v-col>
+                            </v-row>     
+                        </v-card-text>
+                    </v-card>
                 </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="2">
-                  <v-btn
-                    color="success"
-                    dark
-                    id="launch-btn"
-                    @click="runDiscoverer(terms)"
-                  >
-                  <small> RUN <br> SEARCH</small><v-icon>mdi-rocket-launch</v-icon>
-                  </v-btn>
-                  <div id='spacer'>
-                    </div>
+                <v-col cols="1" class="d-flex flex-wrap align-content-end pb-10 pl-0">
+                    <v-btn
+                        color="grey"
+                        dark
+                        @click="clearTerms"
+                        class=""
+                        >
+                        <small> CLEAR <br>SEARCH</small><v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                    <v-btn
+                        color="success"
+                        dark
+                        class="mt-3"
+                        @click="runDiscoverer(terms)"
+                        >
+                        <small> RUN <br> SEARCH</small><v-icon>mdi-rocket-launch</v-icon>
+                    </v-btn> 
                 </v-col>
-              </v-row>       
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col cols="4">
-        <ExamplesKeywords @click='sampleInput'/>
-        </v-col>
-        </v-row>
+                <v-col cols="4">
+                    <ExamplesKeywords @click='sampleInput'/>
+                </v-col>
+                </v-row>
       </v-row>
     </v-container>
   </template>
@@ -186,15 +192,9 @@
     border-width: 1;
     min-height: 22em;
     min-width: 90%;
-    margin-right: 5% 
+
   }
-  #launch-btn{
-    position: absolute;
-    bottom:9%;
-    left: 87%;
-    width: 7em;
-    transform: translateX(-50%); /* Move 50% of own width to the left*/
-  }
+
   .disable-events {
     color: black
   }
@@ -280,8 +280,15 @@
             'isEditing':false})
         }
       },
+      ///---------------------------------
+      ///--- Take buttons out of input area 📌
+      ///--- Terms in store 👉
+      ///---------------------------------
       runDiscoverer(terms){
         this.$emit("click", terms)
+      },
+      clearTerms(){
+        this.terms = []
       },
       getLabel(item){
         if(item.ClassId.includes('operation')===true){

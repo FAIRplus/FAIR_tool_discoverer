@@ -1,28 +1,37 @@
 <template>
     <v-container class="run_main">
-      <v-row class='first-parag mt-5 mb-3'>
-          <h4 class="text-h5">Discover Tools</h4>
-      </v-row>
-      
-      <p class="text-body-2 mb-10">Introduce search terms and respective weights (optionally).</p>
-      
-      <InputArea @click='runDiscoverer'/>
-        <div class="main-results">
-          <div v-if=querying style="min-height: 4px;">
+      <v-row class="mt-8">
+            <v-icon color="#3949AB">
+                mdi-magnify-expand
+            </v-icon>
+            <h4 class="text-h5 title ml-2">
+              Discover Tools
+            </h4>
+        </v-row>
+        <v-row>
+            <v-col cols="8" class="text-body-2 text-justify">
+                Introduce search terms and respective weights (optionally).
+            </v-col>
+        </v-row>
+        <v-row class="mt-8">
+            <InputArea @click='runDiscoverer'/>
+                <div class="main-results">
+                    <div v-if=querying style="min-height: 4px;">
 
-            <!-- query progress bar, see eaxample https://github.com/vuetifyjs/vuetify/blob/master/packages/docs/src/examples/v-progress-linear/prop-query.vue -->
-            <v-progress-linear
-              v-model="value"
-              :active="show"
-              :indeterminate="query"
-              :query="true"
-            ></v-progress-linear>
-          </div>
-           
-          <!--div v-if="results"><Results :tools="results.result" :inputParameters="results.input_parameters" :run_id="results.run_id" /></div>
-          <div v-if="results_not_found" class='center_img' id="not_foundm"><img src="@/assets/img/not_found.svg" width="50px"> No tools found for those keywords</div>
-          <div v-if="error" class='center_img' id="errorm"><img src="@/assets/img/error.svg" width="50px"> Something went wrong while fetching results</div-->
-        </div>
+                        <!-- query progress bar, see eaxample https://github.com/vuetifyjs/vuetify/blob/master/packages/docs/src/examples/v-progress-linear/prop-query.vue -->
+                        <v-progress-linear
+                        v-model="value"
+                        :active="show"
+                        :indeterminate="query"
+                        :query="true"
+                        ></v-progress-linear>
+                    </div>
+            
+            <!--div v-if="results"><Results :tools="results.result" :inputParameters="results.input_parameters" :run_id="results.run_id" /></div>
+            <div v-if="results_not_found" class='center_img' id="not_foundm"><img src="@/assets/img/not_found.svg" width="50px"> No tools found for those keywords</div>
+            <div v-if="error" class='center_img' id="errorm"><img src="@/assets/img/error.svg" width="50px"> Something went wrong while fetching results</div-->
+                </div>
+        </v-row>
     </v-container>
   </template>
   <script>
@@ -82,65 +91,63 @@
         },
       }
     }
-  </script>
-  <style scoped>
-  #errorFormat{
+</script>
+<style scoped>
+.title{
+    color: #3949AB !important;
+    }
+
+#errorFormat{
     color: darkred;
     font-size: small;
-  }
-  .input-run-btn{
-      width: 3em;
-      border: 1px solid green;
-      background-color: green;
-      color: white;
-      font-weight: bold;
-      margin: 1em;
-      margin-left: 0;
-  }
-  .input-aid-btn{
-      border: 1px solid grey; 
-      color: grey;
-      background-color: white;
-      padding: 2%;
-      margin: 2px;
-      width: 100%;
-      margin-top: 1em;
-  }
-  .input_label{
-      font-size: smaller;
-      font-weight: bold;
-  }
-  .run_main{
-    text-align: left;
-    align-items: left;
-    margin-bottom: 2em;
-    font-size: .9rem;
+    }
+.input-run-btn{
+    width: 3em;
+    border: 1px solid green;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    margin: 1em;
+    margin-left: 0;
+    }
+.input-aid-btn{
+    border: 1px solid grey; 
+    color: grey;
+    background-color: white;
+    padding: 2%;
+    margin: 2px;
     width: 100%;
-
-  }
-
-  .center_img img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1em;
     margin-top: 1em;
-  }
-  .center_img{
+    }
+.input_label{
+    font-size: smaller;
+    font-weight: bold;
+    }
+
+.center_img img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+    }
+.center_img{
     text-align: center;
-  }
-  #errorm{
+    }
+
+#errorm{
     color: #900048
-  }
-  #not_foundm{
+    }
+
+#not_foundm{
     color: #300761
-  }
-  #inputdiv{
+    }
+
+#inputdiv{
     margin-top: 0%;
     padding-top: 0%
-  }
-  .main-results{
+    }
+.main-results{
     margin-top: 3em
-  }
-  </style>
-  
+    }
+</style>

@@ -1,5 +1,4 @@
 <template>
-<div>
   <v-row>
   <v-col cols="14" id='main-col'>
     <v-card elevation="0" id="examples-cont">
@@ -20,7 +19,6 @@
     </v-card>
   </v-col>
   </v-row>
-</div>
 </template>
 <style scoped>
 #examples-cont{
