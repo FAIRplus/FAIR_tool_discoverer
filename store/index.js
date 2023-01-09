@@ -12,7 +12,7 @@ export const state = () => ({
     results: null,
     resultsNotFound: false,
     resultsError: false,
-    
+    inputTerms: [],
 });
 
 // Accesores o getters
@@ -20,6 +20,9 @@ export const state = () => ({
 // Normalmente se llaman desde las popriedades computed de los componentes
 
 export const getters = {
+    getInputTerms(state) {
+        return state.inputTerms;
+    },
     getInputTextArea(state) {
         return state.inputTextArea;
     },
@@ -55,6 +58,27 @@ export const actions = {
     async nuxtServerInit({ dispatch }, context) {
       
       },
+
+    editInputItem({commit, state}, payload){
+        // Si se va a activar el modo edicion, solo se activa el modo edicion
+        if(payload.isEditing === true){
+            commit('switchItemEditing', payload);
+        }else{
+        // Si se va a desactivar el modo edicion:
+        // Se edita el item y se desactiva el modo edicion
+            commit('switchItemEditing', payload);
+        }
+    },
+
+    addInputTerm({commit, state}, payload){
+        var item = {
+            'label':payload.Label, 
+            'ClassId':payload.ClassId,
+            'weight':'1.00', 
+            'isEditing': false
+            }
+        commit('pushInputTerm', item);
+    },
 
     async fetchResultsById({commit, state}, Id){
         
@@ -130,5 +154,16 @@ export const actions = {
 // No deben ser llamadas desde los componentes
 
 export const mutations = {
-    
+    pushInputTerm(state, item){
+        state.inputTerms.push(item);
+    },
+
+    switchItemEditing(state, payload){
+        state.inputTerms[payload.index].isEditing = payload.value;
+    },
+
+    editItem(state, payload){
+        state.inputTerms[payload.index].label = payload.item.label;
+        state.inputTerms[payload.index].weight = payload.item.weight;
+    }
 }

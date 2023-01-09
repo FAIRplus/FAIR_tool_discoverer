@@ -14,7 +14,7 @@
             </v-col>
         </v-row>
         <v-row class="mt-8">
-            <InputArea @click='runDiscoverer'/>
+            <Input @click='runDiscoverer'/>
                 <div class="main-results">
                     <div v-if=querying style="min-height: 4px;">
 
@@ -35,13 +35,13 @@
     </v-container>
   </template>
   <script>
-  import InputArea from '../components/discover/InputArea.vue'
+  import Input from '../components/discover/Input.vue'
   import { mapGetters } from 'vuex'
   import axios from 'axios'
   export default {
     name: 'discover',
     components: {
-      InputArea
+      Input
     },
     created() {
       // watch the params of the route to fetch the data again
