@@ -37,7 +37,7 @@
   <script>
   import Input from '../components/discover/Input.vue'
   import { mapGetters } from 'vuex'
-  import axios from 'axios'
+  
   export default {
     name: 'discover',
     components: {
@@ -59,8 +59,7 @@
       )
     },
     computed: {
-        ...mapGetters('data',{
-            inputTextArea : 'getInputTextArea',
+        ...mapGetters({
             query: 'getQuery',
             querying: 'getQuerying',
             results: 'getResults',
@@ -77,9 +76,6 @@
       }
     },
     methods: {
-        clearInput () {
-            this.inputTextarea = ''
-        },
 
       // Run the discoverer with the terms in textArea 
       // ----> this is the function that is called when the button is clicked

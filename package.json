@@ -16,10 +16,12 @@
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
+    "vue-axios": "^3.5.2",
     "vue-code-highlight": "^0.7.8",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
-    "vuetify": "^2.6.10"
+    "vuetify": "^2.6.10",
+    "vuex-cache": "^3.5.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.12.3",
