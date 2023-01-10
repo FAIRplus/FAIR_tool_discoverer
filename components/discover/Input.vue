@@ -11,15 +11,14 @@
                         color="grey"
                         dark
                         @click="clearTerms"
-                        class=""
                         >
-                        <small> CLEAR <br>SEARCH</small><v-icon>mdi-delete</v-icon>
+                        <small> CLEAR <br>TERMS</small><v-icon>mdi-delete</v-icon>
                     </v-btn>
                     <v-btn
                         color="success"
-                        dark
                         class="mt-3"
-                        @click="runDiscoverer(terms)"
+                        dark
+                        @click="runDiscoverer"
                         >
                         <small> RUN <br> SEARCH</small><v-icon>mdi-rocket-launch</v-icon>
                     </v-btn> 
@@ -48,18 +47,6 @@ export default {
     data () {
         return {
           inputTerms: [],
-          termsNames:[],
-          hover:[],
-          btns: {
-                'edit':{
-                    'icon':'mdi-pencil', 
-                    'text':'Edit'
-                    },
-                'delete':{
-                    'icon':'mdi-trash-can-outline', 
-                    'text':'Remove'
-                    }
-                },
         }
       },
     methods: {
@@ -104,7 +91,7 @@ export default {
             this.$emit("click", this.inputTerms)
         },
         clearTerms(){
-            this.terms = []
+            this.inputTerms = []
         }
     }
 }

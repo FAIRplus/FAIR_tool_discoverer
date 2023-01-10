@@ -1,28 +1,31 @@
 <template>
     <v-row>
         <v-col cols="6">
+            <!-- `item-text` is used for the search -->
+            <!-- `item-value` is assigned to `v-model` (`input` variable) -->
             <v-autocomplete
                 v-model="input"
                 :items="EDAM_items"
                 :search-input.sync="cachedterms"
                 :debounce-search="0"
-                cache-items
+                item-text="PreferredLabel"
+                :item-value="getValue"
                 placeholder="Start typing to search EDAM terms"
                 background-color="#ECEFF1"
-                label=""
-                chips
-                solo
+                cache-items
                 hide-no-data
                 hide-selected
                 small-chips
+                chips
+                solo
                 >
                 <template v-slot:selection="data">
                     <v-chip
-                        class="ma-2"
-                        label
-                        small
+                        class="ma-2 text-caption"
                         :color=getColor(data.item)
                         text-color="white"
+                        small
+                        label
                         >
                         {{ getLabel(data.item) }}
                     </v-chip>
@@ -31,11 +34,11 @@
                 <template v-slot:item="data">
                     <template>
                         <v-chip
-                            class="ma-2"
-                            label
-                            small
+                            class="ma-2 text-caption"
                             :color=getColor(data.item)
                             text-color="white"
+                            small
+                            label
                             >
                             {{ getLabel(data.item) }}
                         </v-chip>
@@ -49,8 +52,8 @@
         <v-col cols="1">
             <v-btn
                 color="#3949AB"
-                dark
                 class="button"
+                dark
                 @click="addThisItem"
                 >
                 <small>ADD TERM <br>TO SEARCH</small><v-icon>mdi-plus</v-icon>
@@ -66,16 +69,12 @@ export default {
     name: 'AutocompleteBar',
     data() {
         return {
-            terms: [],
             input: null,
             cachedterms: "",
             EDAM_items: EDAM,
         }
     },
     methods: {
-        isObject(item){
-            return typeof item === 'object'
-        },
         addThisItem() {
             // if input is undefined, then the user has not selected an item from the autocomplete list
             if(this.input==null){
@@ -97,11 +96,18 @@ export default {
                 'ClassId': ClassId
             }
 
-            console.log(payload)
+            // ⚒️ console.log('Payload to emit to parent: ', payload)
 
             // add the term to the terms array (in parent component)
             this.$emit('add-item', payload)
         },
+        // Returns the whole item. This is the item-value property of the autocomplete component
+        // Needed so the whole item is assigned to the input variable
+        getValue(item){
+            return(item)
+        },
+        // Returns the category of the item. 
+        // This is displayed in the chips inside the autocomplete component
         getLabel(item){
             if(item.ClassId.includes('operation')===true){
                 return('Operation')
@@ -113,6 +119,8 @@ export default {
                 return('Other')
             }
         },
+        // Returns the color used in the chips inside the autocomplete component.
+        // The color depends on the category of the item.
         getColor(item){
             if(item.ClassId.includes('operation')===true){
                 return('teal')
