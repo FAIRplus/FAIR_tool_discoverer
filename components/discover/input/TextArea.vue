@@ -1,7 +1,6 @@
 <template>
     <v-card
         elevation="1"
-        id='terms-card'
         class="mr-5 pb-4 mb-2"
         >
         <v-card-text>
@@ -11,11 +10,11 @@
                     v-model="item['label']"
                     :disabled="!item['isEditing']"
                     class="mt-0 pt-0"
-                    single-line
                     color="#3949AB"
                     background-color='white'
-                    filled
                     hide-details="auto"
+                    single-line
+                    filled
                     dense
                     >
                     </v-text-field>
@@ -25,13 +24,12 @@
                         v-model="item['weight']"
                         :disabled="!item['isEditing']"
                         class="mt-0 pt-0"
-                        single-line
-                        align="right"
+                        hide-details="auto"
                         color="#3949AB"
                         background-color='white'
+                        single-line
                         filled
                         dense
-                        hide-details="auto"
                         >
                         </v-text-field>
                 </v-col>
@@ -44,19 +42,15 @@
     </v-card>
 </template>
 <style scoped>
-
-#terms-card{
+.v-card{
+    margin-top: 0%;
+    padding: auto;
+    overflow: wrap;
     border-color: #edebeb;
     border-style: solid;
     border-width: 1;
     min-height: 22em;
     min-width: 90%;
-
-  }
-.v-card{
-    margin-top: 0%;
-    padding: auto;
-    overflow: wrap;
   }
   .v-card >>> .v-text-field{
     font-size: .9rem;
@@ -86,12 +80,8 @@ export default {
         DeleteBtn
     },
     props: [ 'inputTerms' ],
-    data() {
-        return {
-            isEditing: false
-        }
-    },
     methods: {
+        // This method is called when the edit button is clicked
         editThisItem(index, item) {
             const payload = {
                 'index': index,
@@ -109,6 +99,7 @@ export default {
                 this.$emit('edit-input-item', payload)
                 item.isEditing = !item.isEditing;           }
         },
+        // This method is called when the delete button is clicked
         removeThisItem(index) {
             this.$emit('remove-input-item', index)
         }

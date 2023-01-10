@@ -66,6 +66,7 @@ export const actions = {
         }else{
         // Si se va a desactivar el modo edicion:
         // Se edita el item y se desactiva el modo edicion
+            commit('editItem', payload);
             commit('switchItemEditing', payload);
         }
     },

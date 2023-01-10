@@ -38,7 +38,7 @@
                 <br><br>
                 For detailed information about using such tools, or how to perform <i>FAIRification</i>, 
                 please check the <a href="https://fairplus.github.io/the-fair-cookbook/content/home.html">FAIR Cookbook<sup class="link-icon"><i class="fas fa-external-link-alt"></i></sup></a>.
-            </v-col>
+        </v-col>
         </v-row>
      </v-container>
 </template>

@@ -25,7 +25,7 @@
                     </v-btn> 
                 </v-col>
                 <v-col cols="4">
-                    <ExamplesKeywords @click='sampleInput'/>
+                    <ExampleKeywords @load-keywords='sampleInput'/>
                 </v-col>
             </v-row>
         </v-row>
@@ -34,17 +34,13 @@
 <script>
 import AutocompleteBar from './input/AutocompleteBar.vue'
 import TextArea from './input/TextArea.vue'
-import EditBtn from './input/EditBtn.vue'
-import DeleteBtn from './input/DeleteBtn.vue'
-import ExamplesKeywords from './ExamplesKeywords.vue'
+import ExampleKeywords from './input/ExampleKeywords.vue'
 
 
 export default {
     name: 'InputArea',
-    components: { 
-        EditBtn,
-        DeleteBtn,
-        ExamplesKeywords,
+    components: {
+        ExampleKeywords,
         AutocompleteBar,
         TextArea
         },
@@ -90,7 +86,7 @@ export default {
         },
         // Add sample input items - called from ExamplesKeywords
         sampleInput (keywords) {
-            this.terms = []
+            this.inputTerms = []
             for(let i=0; i<keywords.length;i++){
                 let newItem = {
                     'label':keywords[i]['label'], 
@@ -98,7 +94,7 @@ export default {
                     'ClassId':keywords[i]['ClassId'],
                     'isEditing':false
                 }
-                this.inputTerms.push(item)
+                this.inputTerms.push(newItem)
             }
         },
         runDiscoverer(){
