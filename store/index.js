@@ -4,7 +4,7 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
-// almacenamiento central de vuex
+// central store
 export const state = () => ({
     inputTextArea: '',
     query: false,
@@ -15,17 +15,10 @@ export const state = () => ({
     inputTerms: [],
 });
 
-// Accesores o getters
-// accesores para coger datos desde los componentes
-// Normalmente se llaman desde las popriedades computed de los componentes
+// Getters
 
 export const getters = {
-    getInputTerms(state) {
-        return state.inputTerms;
-    },
-    getInputTextArea(state) {
-        return state.inputTextArea;
-    },
+
     getQuery(state){
         return state.query;
     },
@@ -43,11 +36,8 @@ export const getters = {
     }
 }
 
-// Acciones - Metodos publicos
-// Estas funciones sirven para llamar a las mutaciones desde los componentes
-// A diferencia de las mutaciones, pueden ser asincronas (llamadas APIs)
-// Pueden tener algo de business logic y pueden llamar a varias mutaciones
-//Actions
+// Actions - public methods
+
 
 export const actions = {
     /**
@@ -58,28 +48,6 @@ export const actions = {
     async nuxtServerInit({ dispatch }, context) {
       
       },
-
-    editInputItem({commit, state}, payload){
-        // Si se va a activar el modo edicion, solo se activa el modo edicion
-        if(payload.isEditing === true){
-            commit('switchItemEditing', payload);
-        }else{
-        // Si se va a desactivar el modo edicion:
-        // Se edita el item y se desactiva el modo edicion
-            commit('editItem', payload);
-            commit('switchItemEditing', payload);
-        }
-    },
-
-    addInputTerm({commit, state}, payload){
-        var item = {
-            'label':payload.Label, 
-            'ClassId':payload.ClassId,
-            'weight':'1.00', 
-            'isEditing': false
-            }
-        commit('pushInputTerm', item);
-    },
 
     async fetchResultsById({commit, state}, Id){
         
@@ -150,21 +118,23 @@ export const actions = {
 
     
 }
-// Mutadores
-// El 'unico fin de los mutadores es mutar o modificar state o almacenamiento
-// No deben ser llamadas desde los componentes
+// Mutations
 
 export const mutations = {
-    pushInputTerm(state, item){
-        state.inputTerms.push(item);
-    },
 
-    switchItemEditing(state, payload){
-        state.inputTerms[payload.index].isEditing = payload.value;
+    changeQuery(state, query){
+        state.query = query;
     },
-
-    editItem(state, payload){
-        state.inputTerms[payload.index].label = payload.item.label;
-        state.inputTerms[payload.index].weight = payload.item.weight;
+    changeQuerying(state, querying){
+        state.querying = querying;
+    },
+    setResults(state, results){
+        state.results = results;
+    },
+    changeResultsNotFound(state, resultsNotFound){
+        state.resultsNotFound = resultsNotFound;
+    },
+    changeResultsError(state, resultsError){
+        state.resultsError = resultsError;
     }
 }
