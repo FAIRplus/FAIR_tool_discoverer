@@ -7,11 +7,17 @@ import createCache from "vuex-cache";
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
+export const plugins = [
+    createCache()
+]
+
+
 // central store
 export const state = () => ({
-    query: false,
+    query: true,
     querying: false,
     results: null,
+    resultsURL: null,
     resultsNotFound: false,
     resultsError: false,
     inputTerms: [],
@@ -29,6 +35,9 @@ export const getters = {
     },
     getResults(state){
         return state.results;
+    },
+    getResultsURL(state){
+        return state.resultsURL;
     },
     getResultsNotFound(state){
         return state.resultsNotFound;
@@ -52,18 +61,23 @@ export const actions = {
       },
 
     async fetchResultsById({commit, state}, Id){
-        
-        commit('changeQuery', true);
-        commit('changeQuerying', true);
+    
+        commit('setResults', null);
+        commit('setResultsNotFound', false);
+        commit('setResultsError', false);
+        commit('setQuery', true);
+        commit('setQuerying', true);
 
         await this.cache.dispatch('GET_RESULTS_BY_ID', Id);
-        commit('changeQuerying', false)
-        commit('changeQuery', false);
+
+        commit('setQuerying', false);
         
     },
 
     async GET_RESULTS_BY_ID({commit, state}, Id){
-        var URL = 'https://fair-tool-discoverer.bsc.es/api/result/fetch';
+        //var URL = 'https://fair-tool-discoverer.bsc.es/api/result/fetch';
+        var URL = 'http://127.0.0.1:5000/result/fetch'
+        console.log('Making request to: ', + URL)
         await this.$axios.get(URL, {
             params: {
                 id : Id
@@ -73,47 +87,56 @@ export const actions = {
             }
         })
         .then(response => {
-            console.log(response);            
-            commit('setResults', response.data.message)
+            console.log(response);  
+            if(response.data.message.result_found==true){          
+                commit('setResults', response.data.message)
+                commit('setResultsURL', response.data.message.run_id);
+            }
+            commit('setResultsNotFound', !response.data.message.result_found);
         })
         .catch(error => {
             console.log(error);
-            commit('changeResultsError', true);
+            commit('setResultsError', true);
         });        
     },
 
     async fetchResultsByQuery({commit, state}, queryTerms){
             
             commit('setResults', null);
-            commit('changeResultsNotFound', false);
-            commit('changeResultsError', false);
-            commit('changeQuery', true);
-            commit('changeQuerying', true);
+            commit('setResultsNotFound', false);
+            commit('setResultsError', false);
+            commit('setQuery', true);
+            commit('setQuerying', true);
     
             await this.cache.dispatch('GET_RESULTS_BY_QUERY', queryTerms);
 
-            commit('changeQuerying', false)
-            commit('changeQuery', false);
+            commit('setQuerying', false)
             
         },
     
     async GET_RESULTS_BY_QUERY({commit, state}, queryTerms){
-        let URL = 'https://fair-tool-discoverer.bsc.es/api/';
+        //let URL = 'https://fair-tool-discoverer.bsc.es/api/';
+        var URL = 'http://127.0.0.1:5000/';
         await this.$axios.post(URL, {
             data : {
                 textarea_content : queryTerms
             },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
                 }
             })
             .then(response => {
-                commit('setResults', response.data.message);
+                if(response.data.message.result_found==true){
+                    commit('setResults', response.data.message);
+                    commit('setResultsURL', response.data.message.run_id);
+                }
+                commit('setResultsNotFound', !response.data.message.result_found);
+                
             })
 
             .catch(error => {
                 console.log(error);
-                commit('changeResultsError', true);
+                commit('setResultsError', true);
             });
                 
         }
@@ -124,19 +147,24 @@ export const actions = {
 
 export const mutations = {
 
-    changeQuery(state, query){
+    setQuery(state, query){
         state.query = query;
     },
-    changeQuerying(state, querying){
+    setQuerying(state, querying){
         state.querying = querying;
     },
     setResults(state, results){
         state.results = results;
     },
-    changeResultsNotFound(state, resultsNotFound){
+    setResultsURL(state, run_id){
+        const nuxtURL = 'http://localhost:3000/';
+        const resultsURL = nuxtURL + 'discover?id=' + run_id;
+        state.resultsURL = resultsURL;
+    },
+    setResultsNotFound(state, resultsNotFound){
         state.resultsNotFound = resultsNotFound;
     },
-    changeResultsError(state, resultsError){
+    setResultsError(state, resultsError){
         state.resultsError = resultsError;
     }
 }

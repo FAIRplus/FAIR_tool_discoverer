@@ -1,70 +1,96 @@
 <template>
-    <v-container class="run_main">
-      <v-row class="mt-8">
-            <v-icon color="#3949AB">
-                mdi-magnify-expand
-            </v-icon>
-            <h4 class="text-h5 title ml-2">
-              Discover Tools
-            </h4>
-        </v-row>
-        <v-row>
-            <v-col cols="8" class="text-body-2 text-justify">
-                Introduce search terms and respective weights (optionally).
-            </v-col>
-        </v-row>
-        <v-row class="mt-8">
-            <Input @click='runDiscoverer'/>
-                <div class="main-results">
-                    <div v-if=querying style="min-height: 4px;">
-
-                        <!-- query progress bar, see eaxample https://github.com/vuetifyjs/vuetify/blob/master/packages/docs/src/examples/v-progress-linear/prop-query.vue -->
-                        <v-progress-linear
-                        v-model="value"
-                        :active="show"
-                        :indeterminate="query"
-                        :query="true"
-                        ></v-progress-linear>
-                    </div>
-            
-            <!--div v-if="results"><Results :tools="results.result" :inputParameters="results.input_parameters" :run_id="results.run_id" /></div>
-            <div v-if="results_not_found" class='center_img' id="not_foundm"><img src="@/assets/img/not_found.svg" width="50px"> No tools found for those keywords</div>
-            <div v-if="error" class='center_img' id="errorm"><img src="@/assets/img/error.svg" width="50px"> Something went wrong while fetching results</div-->
+    <v-container class="run_main" fluid>
+        <v-container>
+            <v-row class="mt-8">
+                <v-icon color="#3949AB">
+                    mdi-magnify-expand
+                </v-icon>
+                <h4 class="text-h5 title ml-2">
+                    Discover Tools
+                </h4>
+            </v-row>
+            <v-row>
+                <v-col cols="8" class="text-body-2 text-justify">
+                    Introduce search terms and respective weights (optionally).
+                </v-col>
+            </v-row>
+            <v-row class="mt-8">
+                <Input @click='runDiscoverer'/>
+            </v-row>
+            <v-row v-if="querying" class="pt-10">
+                <v-progress-linear
+                    style="min-height: 4px;"
+                    indeterminate
+                    v-model="value"
+                    :active="querying"
+                    :query="querying"
+                ></v-progress-linear>
+            </v-row>
+        </v-container>
+        <v-container fluid>
+            <v-row v-if="queryDone">
+                <div v-if="results" class="pt-5 mx-auto resultsPanel">
+                    <Results :tools="results.tools" :inputParameters="results.input_parameters" :run_id="results.runId" />
                 </div>
-        </v-row>
+            
+                <v-alert
+                    v-if="resultsNotFound"
+                    text
+                    type="info"
+                    icon="mdi-alert-circle"
+                    width="90%"
+                    class="mt-5 text-center mx-auto text-body-2"
+                    >
+                    No tools were found for the given search terms
+                </v-alert>
+                <v-alert
+                    v-if="resultsError"
+                    text
+                    type="error"
+                    icon="mdi-alert"
+                    width="90%"
+                    class="mt-5 text-center mx-auto text-body-2"
+                    >
+                    Something went wrong while fetching results
+                </v-alert>
+            </v-row>
+        </v-container>
     </v-container>
-  </template>
-  <script>
-  import Input from '../components/discover/Input.vue'
-  import { mapGetters } from 'vuex'
+</template>
+<script>
+import Input from '../components/discover/Input.vue'
+import Results from '../components/discover/results/Results.vue'
+import { mapGetters } from 'vuex'
   
-  export default {
+export default {
     name: 'discover',
     components: {
-      Input
+        Input,
+        Results
     },
     created() {
-      // watch the params of the route to fetch the data again
-      this.$watch(
-        () => this.$route.params,
-        () => {
-            /// Fetch the results from the API and store them in the results variable
-            if(this.$route.params.run_id){
-                this.$store.dispatch('fetchResultsById', this.$route.params.run_id)
-            }
-        },
-        // fetch the data when the view is created and the data is
-        // already being observed
-        { immediate: true }
-      )
+        // watch the params of the route to fetch results data
+        this.checkIdInParameters()
+        //this.$watch(
+        //    () => this.$route.params,
+        //    () => {
+                /// Fetch the results from the API and store them in the results variable
+        //        if(this.$route.params.id){
+        //            this.$store.dispatch('fetchResultsById', this.$route.params.id)
+        //            }
+        //        },
+            // fetch the data when the view is created and the data is
+            // already being observed
+        //    { immediate: true }
+        //)
     },
     computed: {
         ...mapGetters({
-            query: 'getQuery',
+            queryDone: 'getQuery',
             querying: 'getQuerying',
             results: 'getResults',
-            results_not_found: 'getResultsNotFound',
-            error: 'getError',
+            resultsNotFound: 'getResultsNotFound',
+            resultsError: 'getResultsError',
         })
     },
     data () {
@@ -76,19 +102,30 @@
       }
     },
     methods: {
-
-      // Run the discoverer with the terms in textArea 
-      // ----> this is the function that is called when the button is clicked
-      async runDiscoverer (terms) {
-        console.log(terms)
-        this.$store.dispatch('fetchResultsByQuery', terms)
-        //--> DEAL WITH RESULTS NOT FOUND 👉
-        console.log('done')
-        },
-      }
+        async checkIdInParameters(){
+            // Check if the id is in the parameters
+            // If it is, fetch the results from the API
+            console.log('Checking parameters: ', this.$route.query)
+            if(this.$route.query.id!=undefined){
+                this.$store.dispatch('fetchResultsById', this.$route.query.id)
+                }
+            },
+        // Run the discoverer with the terms in textArea 
+        // Called when the button is clicked
+        async runDiscoverer (terms) {
+            console.log(terms)
+            this.$store.dispatch('fetchResultsByQuery', terms)
+            // TODO: DEAL WITH RESULTS NOT FOUND 👉
+            console.log('done')
+            },
+        }
     }
 </script>
 <style scoped>
+
+.resultsPanel{
+    width: 100%;
+    }
 .title{
     color: #3949AB !important;
     }
@@ -143,7 +180,5 @@
     margin-top: 0%;
     padding-top: 0%
     }
-.main-results{
-    margin-top: 3em
-    }
+
 </style>
