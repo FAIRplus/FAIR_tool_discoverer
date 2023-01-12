@@ -21,15 +21,15 @@
 
                 <v-expansion-panels class="mt-5">
                     <v-expansion-panel
-                        v-for="(item) in keyw_lists"
+                        v-for="(item) in curatedTools"
                         :key="item"
                         >
                         <v-expansion-panel-header class="text-subtitle-2">
-                            {{item.label}}
+                            {{item.category}}
                         </v-expansion-panel-header>
                         <v-expansion-panel-content class="text-caption ml-3">
-                            <div v-for="(keyword) in item.terms" :key="keyword">
-                                {{keyword}}
+                            <div v-for="(tool) in item.tools" :key="tool">
+                                {{tool}}
                             </div>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
@@ -72,17 +72,19 @@
 
 </style>
 <script>
+import curatedTools from '../components/explore/FAIRplusCuratedTools.json'
 export default {
-name: 'FAIRification',
-data () {
-    return {
-    keyw_lists : [
-        {'label':'Data vocabulary/ontology','terms': ['Ontology annotation','Semantic annotation','Text mining',
-'Text annotation','Entity tagging','Entity recognition','Named-entity and concept recognition',
-'Ontology and terminology','Query expansion','Free text mapping','Text Annotation','Annotation','NLP']},
-        {'label':'ETL process','terms': ['Data integration and warehousing','Data governance',
-        'Data identity and mapping','Database management','Data quality management','Query and retrieval',
-        'Information extraction','Format validation']}
+    name: 'FAIRification',
+    data () {
+        return {
+            curatedTools: curatedTools,
+            keyw_lists : [
+                {'label':'Data vocabulary/ontology','terms': ['Ontology annotation','Semantic annotation','Text mining',
+                'Text annotation','Entity tagging','Entity recognition','Named-entity and concept recognition',
+                'Ontology and terminology','Query expansion','Free text mapping','Text Annotation','Annotation','NLP']},
+                {'label':'ETL process','terms': ['Data integration and warehousing','Data governance',
+                'Data identity and mapping','Database management','Data quality management','Query and retrieval',
+                'Information extraction','Format validation']}
     ]
     }
 }

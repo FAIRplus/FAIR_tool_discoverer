@@ -69,7 +69,7 @@ export default {
         Results
     },
     created() {
-        // watch the params of the route to fetch results data
+        // check if id queried in the route to fetch results data
         this.checkIdInParameters()
         //this.$watch(
         //    () => this.$route.params,
@@ -103,9 +103,9 @@ export default {
     },
     methods: {
         async checkIdInParameters(){
-            // Check if the id is in the parameters
+            // Check if id is queried
             // If it is, fetch the results from the API
-            console.log('Checking parameters: ', this.$route.query)
+            console.log('Checking parameters: ', this.$route)
             if(this.$route.query.id!=undefined){
                 this.$store.dispatch('fetchResultsById', this.$route.query.id)
                 }
