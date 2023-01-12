@@ -189,7 +189,6 @@ import DescriptionCol from './DescriptionCol.vue'
 import EnumCol from './EnumCol.vue'
 import PublicationsCol from './PublicationsCol.vue'
 import LicenseCol from './LicenseCol.vue'
-import MockTools2 from './mockTools2.json'
 
 export default {
     name : 'ToolsTable',
@@ -203,11 +202,9 @@ export default {
         EnumCol,
         PublicationsCol,
         LicenseCol,
-
     },
     data() {
         return {
-            mocktools: MockTools2,
             inputValues: null,
             outputValues: null,
             curationValues: null,
