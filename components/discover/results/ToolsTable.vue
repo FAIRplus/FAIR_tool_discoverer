@@ -209,7 +209,7 @@ export default {
             outputValues: null,
             curationValues: null,
             toggle_sources: [0,1,2,3,4,5,6,7,8],
-            toggle_types: [0,1,2,3,4,5,6,7,8],
+            toggle_types: [0,1,2,3,4,5,6,7,8,9,10],
             activeResults: true,
             panel: 1,
             search: '',
@@ -218,7 +218,7 @@ export default {
             longResults:[],
             filtersMapping: {
                 sources : ['biotools', 'github', 'bioconda','galaxy', 'toolshed','sourceforge', 'bioconductor', 'bitbucket', 'other'],
-                types : ['cmd', 'web', 'library', 'db', 'suite', 'workflow', 'container', 'script', 'undefined'],
+                types : ['cmd', 'web', 'lib', 'app','db', 'suite', 'workflow', 'container', 'script','soap', 'undefined'],
             }
         }
     }, 
@@ -235,10 +235,14 @@ export default {
                     text: '', 
                     align: 'start', 
                     sortable: false, 
-                    filterable: false,
+                    filterable: true,
                     value: 'type', 
                     width: '1%',
                     filter: value => {
+                        let filter = this.filter(this.toggle_types, this.typeMapping, value)
+                        if(filter==false){
+                            console.log(value)
+                        }
                         return this.filter(this.toggle_types, this.typeMapping, value)
                     }
                 },
@@ -260,7 +264,7 @@ export default {
                     width: '6rem',
                     filterable: true,
                     filter: value => {
-                        if( value != undefined && this.curationValues != null ){
+                        if( value != null && this.curationValues != null ){
                             return this.filterDataType(this.curationValues, value)
                         }else{
                             return true
@@ -275,8 +279,6 @@ export default {
                     filterable: true,
                     width: '9rem',
                     filter: value => {
-                        console.log('Input Value:', value)
-                        console.log('Input Value in Filter:', this.inputValues)
                         if( value != null && this.inputValues != null ){
                             return this.filterDataType(this.inputValues, value)
                         }else{
