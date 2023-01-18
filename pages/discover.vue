@@ -30,6 +30,7 @@
         <v-container fluid>
             <v-row v-if="queryDone">
                 <div v-if="results" class="pt-5 mx-auto resultsPanel">
+                    Number of results: {{ results.tools.length }}
                     <Results :tools="results.tools" :inputParameters="results.input_parameters" :run_id="results.runId" />
                 </div>
             
@@ -115,7 +116,6 @@ export default {
         async runDiscoverer (terms) {
             console.log(terms)
             this.$store.dispatch('fetchResultsByQuery', terms)
-            // TODO: DEAL WITH RESULTS NOT FOUND 👉
             console.log('done')
             },
         }

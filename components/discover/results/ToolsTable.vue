@@ -21,7 +21,7 @@
                         class="py-2"
                         >   
                             <span class="text-subtitle-2 filterTitle">
-                            Availability
+                                Availability
                             </span>
                             <v-btn-toggle
                             v-model="toggle_sources"
@@ -94,30 +94,28 @@
             </v-form>
         </v-card>
         <!--Filters card END-->
-
         <!--Tools table START-->
+        {{ tools.length }} tools
         <v-data-table
             :v-model="rowSelect"
             :headers="headers"
             :items="tools"
-            :items-per-page="8"
-            :search="search"
+            :items-per-page="10"
             :sort-by="['score']"
             :sort-desc="[true]"
             :fixed_header="true"
             no-data-text="No tools found"
             multi-sort
             class="elevation-0 mt-10"
-
             >
             <template v-slot:[`body`]="{ items }">
                 <tbody class="{'caption': $vuetify.breakpoint.mdAndDown}">
+                    
                     <tr 
                         @click="rowSelect(key)" 
                         v-for="(item, key) in items" :key="item._id.toString()"
                     >
                     <!-- first column for arrow and type. Type is not displayed here, but is necessary for the filtering to work -->
-                
                         <ArrowsCol 
                             :down="arrowsDownShow(key, item.name)" 
                             :up="arrowsUpShow(key, item.name)"
@@ -165,11 +163,11 @@
                             :arrowsUp="arrowsUpShow(key, item.name)"
                             :idx="key"/>
 
-                        <PublicationsCol 
+                        <!--PublicationsCol 
                             :item="item" 
                             :idx="key"
                             class="pt-1 pb-1" 
-                            />
+                            /-->
 
                         <LicenseCol :licenses="item.license"  />
                     </tr>
@@ -189,6 +187,7 @@ import DescriptionCol from './DescriptionCol.vue'
 import EnumCol from './EnumCol.vue'
 import PublicationsCol from './PublicationsCol.vue'
 import LicenseCol from './LicenseCol.vue'
+import MockResult from './mocks/MockTools.json'
 
 export default {
     name : 'ToolsTable',
@@ -205,11 +204,12 @@ export default {
     },
     data() {
         return {
+            MockResult,
             inputValues: null,
             outputValues: null,
             curationValues: null,
-            toggle_sources: [0,1,2,3,4,5,6],
-            toggle_types: [0,1,2,3,4],
+            toggle_sources: [0,1,2,3,4,5,6, 7],
+            toggle_types: [0,1,2,3,4,5,6,7],
             activeResults: true,
             panel: 1,
             search: '',
@@ -217,8 +217,8 @@ export default {
             isHovering: false,
             longResults:[],
             filtersMapping: {
-                sources : ['biotools', 'github', 'bioconda','galaxy', 'sourceforge', 'bioconductor', 'bitbucket'],
-                types : ['cmd', 'web', 'library', 'db', 'suite']
+                sources : ['biotools', 'github', 'bioconda','galaxy', 'sourceforge', 'bioconductor', 'bitbucket', 'other'],
+                types : ['cmd', 'web', 'library', 'db', 'suite', 'workflow', 'container', 'script', 'undefined'],
             }
         }
     }, 
@@ -235,6 +235,7 @@ export default {
                     text: '', 
                     align: 'start', 
                     sortable: false, 
+                    filterable: false,
                     value: 'type', 
                     width: '1%',
                     filter: value => {
@@ -245,6 +246,7 @@ export default {
                     text: 'Tool Name', 
                     align: 'start', 
                     sortable: false, 
+                    filterable: false,
                     value: 'source', 
                     width: '2.5rem',
                     filter: value => {
@@ -256,7 +258,7 @@ export default {
                     text: 'Curation', 
                     value: 'curation', 
                     width: '6rem',
-                    filterable: true,
+                    filterable: false,
                     filter: value => {
                         if( value != undefined && this.curationValues != null ){
                             return this.filterDataType(this.curationValues, value)
@@ -270,6 +272,7 @@ export default {
                 {
                     text: 'Input Format', 
                     value: 'input_formats', 
+                    filterable: false,
                     width: '9rem',
                     filter: value => {
                         if( value != undefined && this.inputValues != null ){
@@ -282,6 +285,7 @@ export default {
                 {
                     text: 'Output Format', 
                     value: 'output_formats', 
+                    filterable: false,
                     width: '9rem',
                     filter: value => {
                         if( value != undefined && this.outputValues != null ){
@@ -297,17 +301,19 @@ export default {
             },
     },
     mounted() {
-    this.tools.forEach((item) => {
-      if(item.description[0].length>320){
-        this.longResults.push(item.name)
-      }
-      if(item.edam_operations.length>5){
-        this.longResults.push(item.name)
-      }
-      if(item.edam_topics.length>5){
-        this.longResults.push(item.name)
-      }
-    })},
+        this.tools.forEach((item) => {
+                if(item.description[0].length>320){
+                    this.longResults.push(item.name)
+                }
+                if(item.edam_operations.length>5){
+                    this.longResults.push(item.name)
+                }
+                if(item.edam_topics.length>5){
+                    this.longResults.push(item.name)
+                }
+            }
+        )
+    },
     methods : {
         filterDataType(inputValues, value){
             if(inputValues === ''){
@@ -395,12 +401,12 @@ export default {
         return(string)
         },
         span(title, year){
-        const span = `${title} (${year})`
-        return(span)
+            const span = `${title} (${year})`
+            return(span)
         },
         
         formatNumber (num) {
-        return parseFloat(num).toFixed(2)
+            return parseFloat(num).toFixed(2)
         }
     }
 }

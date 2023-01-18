@@ -44,7 +44,7 @@ export const getters = {
     },
     getResultsError(state){
         return state.resultsError;
-    }
+    },
 }
 
 // Actions - public methods
@@ -67,6 +67,7 @@ export const actions = {
         commit('setResultsError', false);
         commit('setQuery', true);
         commit('setQuerying', true);
+
 
         await this.cache.dispatch('GET_RESULTS_BY_ID', Id);
 
@@ -111,6 +112,7 @@ export const actions = {
             await this.cache.dispatch('GET_RESULTS_BY_QUERY', queryTerms);
 
             commit('setQuerying', false)
+            commit('setLoaded', true);
             
         },
     
@@ -166,5 +168,8 @@ export const mutations = {
     },
     setResultsError(state, resultsError){
         state.resultsError = resultsError;
+    },
+    setLoaded(state, payload){
+        state.loaded = payload;
     }
 }

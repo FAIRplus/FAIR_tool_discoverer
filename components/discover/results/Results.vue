@@ -26,6 +26,7 @@
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <ToolsTable :tools="tools"/>
+                    
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>

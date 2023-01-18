@@ -1,6 +1,7 @@
 <template>
     <td>
         <v-chip-group
+            v-if="items != null"
             column>
                 <v-chip
                     v-for="(item) in elementsList" 
