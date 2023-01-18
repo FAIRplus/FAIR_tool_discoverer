@@ -95,7 +95,6 @@
         </v-card>
         <!--Filters card END-->
         <!--Tools table START-->
-        {{ tools.length }} tools
         <v-data-table
             :v-model="rowSelect"
             :headers="headers"
@@ -163,11 +162,11 @@
                             :arrowsUp="arrowsUpShow(key, item.name)"
                             :idx="key"/>
 
-                        <!--PublicationsCol 
+                        <PublicationsCol 
                             :item="item" 
                             :idx="key"
                             class="pt-1 pb-1" 
-                            /-->
+                            />
 
                         <LicenseCol :licenses="item.license"  />
                     </tr>
