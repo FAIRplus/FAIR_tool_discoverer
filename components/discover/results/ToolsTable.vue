@@ -208,8 +208,8 @@ export default {
             inputValues: null,
             outputValues: null,
             curationValues: null,
-            toggle_sources: [0,1,2,3,4,5,6, 7],
-            toggle_types: [0,1,2,3,4,5,6,7],
+            toggle_sources: [0,1,2,3,4,5,6,7,8],
+            toggle_types: [0,1,2,3,4,5,6,7,8],
             activeResults: true,
             panel: 1,
             search: '',
@@ -217,7 +217,7 @@ export default {
             isHovering: false,
             longResults:[],
             filtersMapping: {
-                sources : ['biotools', 'github', 'bioconda','galaxy', 'sourceforge', 'bioconductor', 'bitbucket', 'other'],
+                sources : ['biotools', 'github', 'bioconda','galaxy', 'toolshed','sourceforge', 'bioconductor', 'bitbucket', 'other'],
                 types : ['cmd', 'web', 'library', 'db', 'suite', 'workflow', 'container', 'script', 'undefined'],
             }
         }
@@ -246,7 +246,7 @@ export default {
                     text: 'Tool Name', 
                     align: 'start', 
                     sortable: false, 
-                    filterable: false,
+                    filterable: true,
                     value: 'source', 
                     width: '2.5rem',
                     filter: value => {
