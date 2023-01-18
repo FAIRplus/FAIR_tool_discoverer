@@ -258,12 +258,12 @@ export default {
                     text: 'Curation', 
                     value: 'curation', 
                     width: '6rem',
-                    filterable: false,
+                    filterable: true,
                     filter: value => {
                         if( value != undefined && this.curationValues != null ){
                             return this.filterDataType(this.curationValues, value)
                         }else{
-                            return value
+                            return true
                         }
                     }
                 },
@@ -272,13 +272,15 @@ export default {
                 {
                     text: 'Input Format', 
                     value: 'input_formats', 
-                    filterable: false,
+                    filterable: true,
                     width: '9rem',
                     filter: value => {
-                        if( value != undefined && this.inputValues != null ){
+                        console.log('Input Value:', value)
+                        console.log('Input Value in Filter:', this.inputValues)
+                        if( value != null && this.inputValues != null ){
                             return this.filterDataType(this.inputValues, value)
                         }else{
-                            return value
+                            return true
                         }
                     }
                 },
@@ -288,10 +290,10 @@ export default {
                     filterable: false,
                     width: '9rem',
                     filter: value => {
-                        if( value != undefined && this.outputValues != null ){
+                        if( value != null && this.outputValues != null ){
                             return this.filterDataType(this.outputValues, value)
                         }else{
-                            return value
+                            return true
                         }
                     }
                 },
@@ -330,7 +332,7 @@ export default {
                 console.log(overlapArray)
 
                 if(overlapArray.length>0){
-                    return value
+                    return true
                 }else{
                     return false
                 }   
