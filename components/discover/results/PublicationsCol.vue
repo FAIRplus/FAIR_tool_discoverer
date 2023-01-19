@@ -66,9 +66,6 @@ export default {
                         if(item.citations[i][idType]!=undefined){
                             links.push(this.linksURLs[k]['template']+item.citations[i][idType])
                             linkFound ++
-                            console.log('hey')
-                            console.log(i)
-                            console.log(linkFound)
                             }
                     }
                 }

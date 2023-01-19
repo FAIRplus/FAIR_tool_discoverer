@@ -1,5 +1,5 @@
 <template>
-    <div v-if="existCitationCounts()">
+    <div v-if="showPlot">
         <div :id="pubPlotProps._id" class="plot">
         </div>
     </div>
@@ -47,21 +47,8 @@ export default {
         plot:true
         }
     },
-    mounted() {
-        if(this.pubPlotProps.citations.length === 0){
-            this.plot = false
-        }
-        else{
-            this.plot = true
-            Plotly.newPlot(this.pubPlotProps._id, /* JSON object */ {
-            "data": this.build_traces(),
-            "config": { "displayModeBar": false  },
-            "layout": layout
-            }
-        )}
-    },
-    methods: {
-        existCitationCounts(){
+    computed: {
+         showPlot(){
             var total = 0
             for (let i = 0; i < this.pubPlotProps.citations.length; i++) {
                 total += this.pubPlotProps.citations[i]['trace']['y'].reduce((a, b) => a + b, 0)
@@ -70,7 +57,19 @@ export default {
                 return(true)
             else
                 return(false)
-        },
+        }
+    },
+    mounted() {
+        if(this.showPlot){
+            Plotly.newPlot(this.pubPlotProps._id, /* JSON object */ {
+            "data": this.build_traces(),
+            "config": { "displayModeBar": false  },
+            "layout": layout
+            }
+        )}
+    },
+    methods: {
+
         build_traces(){
             var traces = []
             for (let i = 0; i < this.pubPlotProps.citations.length; i++) {
