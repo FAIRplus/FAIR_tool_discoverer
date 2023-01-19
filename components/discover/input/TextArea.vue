@@ -49,7 +49,7 @@
     border-color: #edebeb;
     border-style: solid;
     border-width: 1;
-    min-height: 22em;
+    min-height: 20em;
     min-width: 90%;
   }
   .v-card >>> .v-text-field{

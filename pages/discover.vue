@@ -30,7 +30,6 @@
         <v-container fluid>
             <v-row v-if="queryDone">
                 <div v-if="results" class="pt-5 mx-auto resultsPanel">
-                    Number of results: {{ results.tools.length }}
                     <Results :tools="results.tools" :inputParameters="results.input_parameters" :run_id="results.runId" />
                 </div>
             
