@@ -40,14 +40,15 @@
                 Introduce a term in the input bar and click "Add term to search" to include it into the kywords list to search. While typing, similar EDAM terms will be dispalyed as a dropdown. 
                 The list of keywords to search is displayed under the input bar as the terms are added to it.
                 The grey label on the right indicates the type os EDAM term, either 'operation' or 'topic'. Once a term is added to the list, you can modify its weight by clicking the 'Edit' bottom on the right.
-                <v-card elevation=0 class="mt-5 mb-5 text-center">
+                <v-card elevation=0 class="mt-7 mb-7 text-center">
                     <v-img  
                         :src="screenshot"
                         max-width=600 
-                        class="mx-auto"
+                        class="mx-auto elevation-1"
+                        
                         >
                     </v-img>
-                    <div class="text-caption">
+                    <div class="text-caption mt-2">
                         See example keyword lists next to input box.
                     </div>
                 </v-card>

@@ -57,9 +57,11 @@ export default {
     methods: {
         build_pubs(item){
             var labels = []
+            // for each associated publication
             for (let i = 0; i < item.citations.length; i++) {
                 var links = []
                 var linkFound = 0
+                // get all links of each publication
                 for(var k = 0; k < this.linksURLs.length; k++){
                     while(linkFound < 1){
                         const idType = this.linksURLs[k]['id']
@@ -70,14 +72,16 @@ export default {
                     }
                 }
                 var label = ''
+                // get label for the publication. If the publication has no title, use link URL
+                // If publication has a year, add it to the label.
                 if(item.citations[i]['year'] == undefined){
                     if(item.citations[i]['title'] == undefined){
-                        label = 'link'
+                        label = links[0]
                     }else{
                         label = item.citations[i]['title']
                     }
                 }else{
-                    label = `<span>${item.citations[i]['title']}(${item.citations[i]['year']})</span>`
+                    label = `<span>${item.citations[i]['title']}(<b>${item.citations[i]['year']}</b>)</span>`
                 }
                 labels.push({'label':label, 
                             'color':this.plot_colors[i],
