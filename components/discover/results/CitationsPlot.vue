@@ -1,5 +1,5 @@
 <template>
-    <div v-if="pubPlotProps.citations.length!=0">
+    <div v-if="existCitationCounts()">
         <div :id="pubPlotProps._id" class="plot">
         </div>
     </div>
@@ -61,6 +61,16 @@ export default {
         )}
     },
     methods: {
+        existCitationCounts(){
+            var total = 0
+            for (let i = 0; i < this.pubPlotProps.citations.length; i++) {
+                total += this.pubPlotProps.citations[i]['trace']['y'].reduce((a, b) => a + b, 0)
+            }
+            if(total>0)
+                return(true)
+            else
+                return(false)
+        },
         build_traces(){
             var traces = []
             for (let i = 0; i < this.pubPlotProps.citations.length; i++) {
