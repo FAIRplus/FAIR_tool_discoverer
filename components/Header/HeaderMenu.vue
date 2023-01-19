@@ -72,6 +72,7 @@
 							v-for="item in moreOptions"
 							:key="item.title"
 							@click="() => {}"
+							:to="item.to"
 						>
 							<v-icon small>{{item.icon}}</v-icon>
 							<v-list-item-title class="text-caption ml-1">{{ item.title }}</v-list-item-title>

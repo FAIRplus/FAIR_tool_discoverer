@@ -39,7 +39,7 @@
             <v-col cols="8" class="text-body-2 text-justify">
                 Introduce a term in the input bar and click "Add term to search" to include it into the kywords list to search. While typing, similar EDAM terms will be dispalyed as a dropdown. 
                 The list of keywords to search is displayed under the input bar as the terms are added to it.
-                The grey label on the right indicates the type os EDAM term, either 'operation' or 'topic'. Once a term is added to the list, you can modify its weight by clicking the 'Edit' bottom on the right.
+                The label on the right indicates the type os EDAM term, either 'operation' or 'topic'. Once a term is added to the list, you can modify its weight by clicking the 'Edit' bottom on the right.
                 <v-card elevation=0 class="mt-7 mb-7 text-center">
                     <v-img  
                         :src="screenshot"
@@ -75,6 +75,7 @@
 
 .title{
     color: #3949AB !important;
+    font-size: larger !important;
 }
 
 .link-icon{

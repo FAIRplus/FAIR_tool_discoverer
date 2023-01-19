@@ -45,6 +45,7 @@
 <style scoped>
 .title{
     color: #3949AB !important;
+    font-size: larger !important;
 }
 .lists{
     margin-bottom: 1em

@@ -105,7 +105,7 @@ export default {
         async checkIdInParameters(){
             // Check if id is queried
             // If it is, fetch the results from the API
-            console.log('Checking parameters: ', this.$route)
+            // ⚒️ console.log('Checking parameters: ', this.$route)
             if(this.$route.query.id!=undefined){
                 this.$store.dispatch('fetchResultsById', this.$route.query.id)
                 }
@@ -113,9 +113,8 @@ export default {
         // Run the discoverer with the terms in textArea 
         // Called when the button is clicked
         async runDiscoverer (terms) {
-            console.log(terms)
+            // ⚒️ console.log('Terms: ", terms)
             this.$store.dispatch('fetchResultsByQuery', terms)
-            console.log('done')
             },
         }
     }

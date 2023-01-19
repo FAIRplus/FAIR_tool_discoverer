@@ -10,11 +10,6 @@ const moreOptions = [
         title: 'Source Code',
         to: 'https://github.com',
         icon: 'mdi-github',
-    },
-    {
-        title: 'Contact',
-        to: '/contact',
-        icon: 'mdi-email-outline',
     }
 ];
 

@@ -92,7 +92,6 @@ export default {
             // Edition mode is activated
             if(payload.isEditing === true){
                 item.isEditing = !item.isEditing;
-                console.log('edit mode activated')
             }else{
             // If the item is in edit mode (was edited):
             // Edition mode is deactivated and the new value is emitted

@@ -238,10 +238,6 @@ export default {
                     value: 'type', 
                     width: '1%',
                     filter: value => {
-                        let filter = this.filter(this.toggle_types, this.typeMapping, value)
-                        if(filter==false){
-                            console.log(value)
-                        }
                         return this.filter(this.toggle_types, this.typeMapping, value)
                     }
                 },
@@ -322,16 +318,8 @@ export default {
             if(inputValues === ''){
                 return value
             }else{
-                console.log('Input Values:')
-                console.log(inputValues)
-                console.log('Value:')
-                console.log(value)
-                
                 const overlapArray = value.filter(item => item.toLowerCase().includes(inputValues.toLowerCase()))
                 /* If overlap, show tool */
-                console.log('Overlap:')
-                console.log(overlapArray)
-
                 if(overlapArray.length>0){
                     return true
                 }else{
@@ -362,7 +350,6 @@ export default {
             return this.filtersMapping.types[x]
         },
         rowSelect(idx) {
-            console.log('selected', idx)
             if(this.selected === idx){
                 this.selected = null;
             } else {
