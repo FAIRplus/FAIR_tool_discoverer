@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div >
         <v-navigation-drawer
-			v-if="$vuetify.breakpoint.smAndDown"
 			v-model="openNavMobile"
 			fixed
 			app
+			v-if="$vuetify.breakpoint.smAndDown"
+			class="d-flex flex-column"
 		>
 			<v-list>
 				<v-list-item
@@ -13,15 +14,41 @@
 					:to="item.to"
 					router
 					exact
-				>
-					<v-list-item-content>
-						<v-list-item-title v-text="item.title" />
-					</v-list-item-content>
+					>	
+					<v-list-item-icon class="mr-2">
+						<v-icon>{{ item.icon }}</v-icon>
+					</v-list-item-icon>
+					<v-list-item-title
+						class="text-body-2" 
+						>
+						{{ item.title }}
+					</v-list-item-title>
 				</v-list-item>
-
-	
-			</v-list>
+				<v-divider></v-divider>
+				<v-list-item
+					v-for="(item, i) in moreOptions"
+					:key="i"
+					:to="item.to"
+					:href="item.href"
+					:target="item.target"
+					:nuxt="item.nuxt"
+					exact
+					>	
+					<v-list-item-icon class="mr-2">
+						<v-icon>{{ item.icon }}</v-icon>
+					</v-list-item-icon>
+					<v-list-item-title
+						class="text-body-2" 
+						>
+						{{ item.title }}
+					</v-list-item-title>
+				</v-list-item>
+				
+			</v-list> 
+		
+		
 		</v-navigation-drawer> 
+
 		<v-app-bar fixed app elevation="2" color="white" class="pt-1">
 			<div class="bar">
 			<v-btn
@@ -110,6 +137,12 @@
 	background-color: none !important;
 }
 
+
+#bottom-drawer-list {
+	bottom: 0;
+	width: 100%;
+}
+
 </style>
 <script>
 import menuEntries from './menuEntries';
@@ -129,6 +162,11 @@ export default {
             logo,
         };
     },
+	methods: {
+		handleToggleOpen() {
+			this.openNavMobile = !this.openNavMobile;
+		}
+	},
 };
 
 </script>

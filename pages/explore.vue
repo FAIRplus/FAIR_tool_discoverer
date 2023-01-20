@@ -1,5 +1,5 @@
 <template>
-     <v-container>
+     <v-container :id="smallViewPort">
         <v-row class="mt-8">
             <v-icon color="#3949AB">
                 mdi-tools
@@ -9,7 +9,14 @@
             </h4>
         </v-row>
         <v-row>
-            <v-col cols="8" class="text-body-2 text-justify">
+            <v-col 
+                cols="12"
+                sm="10"
+                md="8"
+                lg="6"
+                xl="6"
+                class="text-body-2 text-justify"
+                >
                 The <b>FAIRification Tool Discoverer</b> suggests tools for common FAIRification tasks. <br>
                 The tools are collected from public archives and curated for FAIRification capabilities 
                 (see details in <a href="/Help">About</a>).
@@ -47,6 +54,18 @@
     color: #3949AB !important;
     font-size: larger !important;
 }
+
+#large-view-port {
+    margin-bottom: 3% !important;
+    width: 90% !important;
+    }
+
+#small-view-port {
+    font-size: smaller !important;
+    margin-left: auto !important;
+    width: 95% !important;
+    }
+    
 .lists{
     margin-bottom: 1em
     }
@@ -65,14 +84,11 @@
     margin-left: 0.25em;
     margin-right: 0.25em
     }
-.v-container {
-    font-size: .2rem;
-    margin-bottom: 3%;
-    width: 90%;
-    }
+
 
 </style>
 <script>
+import { computed } from 'vue';
 import curatedTools from '../components/explore/FAIRplusCuratedTools.json'
 export default {
     name: 'FAIRification',
@@ -86,8 +102,19 @@ export default {
                 {'label':'ETL process','terms': ['Data integration and warehousing','Data governance',
                 'Data identity and mapping','Database management','Data quality management','Query and retrieval',
                 'Information extraction','Format validation']}
-    ]
+            ]
+        }
+    },
+    computed: {
+        smallViewPort() {
+            if(this.$vuetify.breakpoint.xs){
+                return 'small-view-port'
+            }
+            else{
+                return 'large-view-port'
+            }
+        }
     }
 }
-}
+
 </script>

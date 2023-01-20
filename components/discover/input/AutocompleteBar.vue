@@ -1,6 +1,9 @@
 <template>
     <v-row>
-        <v-col cols="6">
+        <v-col 
+            cols="10"
+            sm="8"
+            md="6">
             <!-- `item-text` is used for the search -->
             <!-- `item-value` is assigned to `v-model` (`input` variable) -->
             <v-autocomplete
@@ -49,14 +52,21 @@
                 </template>
             </v-autocomplete>
         </v-col>
-        <v-col cols="1">
+        <v-col 
+            cols="1"
+            class="mt-2">
             <v-btn
                 color="#3949AB"
                 class="button"
                 dark
                 @click="addThisItem"
                 >
-                <small>ADD TERM <br>TO SEARCH</small><v-icon>mdi-plus</v-icon>
+                <small
+                    v-if="$vuetify.breakpoint.smAndUp"
+                    >
+                    ADD TERM <br>TO SEARCH
+                </small>
+                <v-icon>mdi-plus</v-icon>
             </v-btn>
 
         </v-col>

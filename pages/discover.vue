@@ -1,6 +1,11 @@
 <template>
-    <v-container class="run_main" fluid>
-        <v-container>
+    <v-container
+        :fluid = "$vuetify.breakpoint.mdAndDown" 
+        >
+        <v-container
+            :id="contianerId"
+            :fluid = "$vuetify.breakpoint.mdAndDown" 
+            >
             <v-row class="mt-8">
                 <v-icon color="#3949AB">
                     mdi-magnify-expand
@@ -85,6 +90,17 @@ export default {
         //)
     },
     computed: {
+        contianerId(){
+            if(this.$vuetify.breakpoint.xl){
+                return 'input-discoverer-large'
+                }
+            else if(this.$vuetify.breakpoint.mdAndDown){
+                return 'discoverer-md-and-down'
+            }
+            else{
+                return ''
+                }
+            },
         ...mapGetters({
             queryDone: 'getQuery',
             querying: 'getQuerying',
@@ -120,7 +136,14 @@ export default {
     }
 </script>
 <style scoped>
+#discoverer-md-and-down{
+    width: 95% !important;
+    margin: auto !important;
+    }
 
+#input-discoverer-large{
+    width: 65%;
+}
 .resultsPanel{
     width: 100%;
     }

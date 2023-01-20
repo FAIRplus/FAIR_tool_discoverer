@@ -2,7 +2,7 @@
     <v-row>
         <v-col cols="12" class="pa-0">
             <v-card elevation="0">
-                <h5 class="text-subtitle-1 mb-2">Example keyword lists</h5>
+                <h5 :id="idSmall" class="text-body-1 mb-2">Example keyword lists</h5>
                 <v-btn 
                     v-for="item in keywordSets" 
                     :key="item.PreferredLabel"
@@ -22,6 +22,12 @@
     </v-row>
 </template>
 <style scoped>
+
+#small{
+  font-size: small !important;
+  font-weight: 300 !important;
+  margin-bottom: .2em !important;
+}
 .v-card{
   text-align: center;
   margin-top: 0;
@@ -61,6 +67,14 @@ export default {
       {'label':'Identifier Mapping', 'color': '#5C6BC0', 'keywords': IdMap},
       {'label':'Extract, Transform, Load', 'color': '#283593','keywords': ETL}],
     }
+  },
+  computed: {
+    idSmall(){
+      if(this.$vuetify.breakpoint.smAndDown){
+        return 'small'
+      }
+    }
+
   },
   methods: {
     // This method is called when a keywords button is clicked

@@ -1,11 +1,16 @@
 <template>
     <v-card
         elevation="1"
-        class="mr-5 pb-4 mb-2"
+        class="mr-0 pb-4 mb-2"
         >
         <v-card-text>
             <v-row v-for="(item, index) in inputTerms" :key="index">
-                <v-col cols="7">
+                <v-col 
+                    cols="8"
+                    sm="7"
+                    md="7"
+                    lg="7"
+                    xl="7">
                 <v-text-field 
                     v-model="item['label']"
                     :disabled="!item['isEditing']"
@@ -19,7 +24,9 @@
                     >
                     </v-text-field>
                 </v-col>
-                <v-col cols="2">
+                <v-col 
+                    cols="2"
+                    >
                     <v-text-field 
                         v-model="item['weight']"
                         :disabled="!item['isEditing']"
@@ -33,7 +40,12 @@
                         >
                         </v-text-field>
                 </v-col>
-                <v-col cols="2">
+                <v-col 
+                    cols="2"
+                    sm="3"
+                    md="2"
+                    lg="2"
+                    xl="2">
                     <EditBtn @click='editThisItem(index, item)' />
                     <DeleteBtn @click="removeThisItem(index)"/>
                 </v-col>
@@ -50,7 +62,6 @@
     border-style: solid;
     border-width: 1;
     min-height: 20em;
-    min-width: 90%;
   }
   .v-card >>> .v-text-field{
     font-size: .9rem;

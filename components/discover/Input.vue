@@ -2,34 +2,106 @@
     <v-container fluid>
         <v-row>
             <AutocompleteBar @add-item="addNewItem"/>
+        </v-row>
+        <v-row>
             <v-row>
-                <v-col cols="7">
+                <v-col 
+                    cols="12"
+                    sm="10"
+                    md="8"
+                    lg="7"
+                    xl="7">
                     <TextArea :inputTerms="inputTerms" @edit-input-item="editItem" @remove-input-item="removeItem" />
                 </v-col>
-                <v-col cols="1" class="d-flex flex-wrap align-content-end pb-10 pl-0">
+                <v-col 
+                    class="d-flex flex-wrap align-content-end pb-10 pl-0"
+                    v-if="!buttonsLateral"
+                    cols="10"
+                    sm="2"
+                    md="1"
+                    lg="1"
+                    xl="1">
                     <v-btn
                         color="grey"
+                        :id="$vuetify.breakpoint.xs ? 'clear-small' : 'clear-large'"
                         dark
                         @click="clearTerms"
                         >
-                        <small> CLEAR <br>TERMS</small><v-icon>mdi-delete</v-icon>
+                        <small> CLEAR <br>TERMS</small>
+                        <v-icon v-if="$vuetify.breakpoint.mdAndUp">mdi-delete</v-icon>
                     </v-btn>
                     <v-btn
                         color="success"
-                        class="mt-3"
+                        :id="$vuetify.breakpoint.xs ? 'run-search-small' : 'run-search-large'"
                         dark
                         @click="runDiscoverer"
                         >
-                        <small> RUN <br> SEARCH</small><v-icon>mdi-rocket-launch</v-icon>
+                        <small> RUN <br> SEARCH</small>
+                        <v-icon v-if="$vuetify.breakpoint.mdAndUp">mdi-rocket-launch</v-icon>
                     </v-btn> 
                 </v-col>
-                <v-col cols="4">
+                <v-col 
+                    cols="12"
+                    sm="10"
+                    md="4"
+                    lg="4"
+                    xl="4">
                     <ExampleKeywords @load-keywords='sampleInput'/>
+                </v-col>
+                <v-col 
+                    class="d-flex flex-wrap align-content-end pb-10 pl-0"
+                    v-if="buttonsLateral"
+                    cols="10"
+                    sm="2"
+                    md="10">
+                    <v-btn
+                        color="grey"
+                        :id="buttonsLateral ? 'clear-small' : 'clear-large'"
+                        dark
+                        @click="clearTerms"
+                        >
+                        <small> CLEAR <br>TERMS</small>
+                        <v-icon v-if="$vuetify.breakpoint.mdAndUp">mdi-delete</v-icon>
+                    </v-btn>
+                    <v-btn
+                        color="success"
+                        :id="buttonsLateral ? 'run-search-small' : 'run-search-large'"
+                        dark
+                        @click="runDiscoverer"
+                        >
+                        <small> RUN <br> SEARCH</small>
+                        <v-icon v-if="$vuetify.breakpoint.mdAndUp">mdi-rocket-launch</v-icon>
+                    </v-btn> 
                 </v-col>
             </v-row>
         </v-row>
     </v-container>
 </template>
+<style>
+
+#clear-small {
+    margin-top: 0 !important;
+    margin-left: 1em !important;
+}
+
+#clear-large {
+    margin-top: 0em !important;
+    margin-left: 0 !important;
+}
+
+#run-search-small {
+    margin-top: 0 !important;
+    margin-left: 1em !important;
+}
+
+#run-search-large {
+    margin-top: 1em !important;
+    margin-left: 0 !important;
+}
+
+
+
+</style>
 <script>
 import AutocompleteBar from './input/AutocompleteBar.vue'
 import TextArea from './input/TextArea.vue'
@@ -49,6 +121,17 @@ export default {
           inputTerms: [],
         }
       },
+    computed: {
+        buttonsLateral(){
+            switch (this.$vuetify.breakpoint.name) {
+            case 'xs': return false
+            case 'sm': return false
+            case 'md': return true
+            case 'lg': return true
+            case 'xl': return true
+            }
+        },
+    },
     methods: {
         // Add new item to the list - called from AutocompleteBar
         addNewItem(payload){
