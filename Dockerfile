@@ -1,12 +1,22 @@
-FROM node:lts-alpine as build-stage
-RUN export NODE_OPTIONS=--max_old_space_size=1536
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
-COPY . .
-RUN npm run build
+#stage 1
+# Dockerfile
+FROM node:11.13.0-alpine as node
 
-FROM nginx as production-stage
-RUN mkdir /app
-COPY --from=build-stage /app/dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
+# create destination directory
+WORKDIR /app
+
+# update and install dependency
+RUN apk update && apk upgrade
+RUN apk add git
+
+# copy the app, note .dockerignore
+COPY . .
+RUN npm install
+RUN npm run build
+RUN npm run generate
+
+#stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80

@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+    front-end:
+        image: wp3fairtooling/tools_discoverer_fe_dev
+        restart: unless-stopped
+        ports:
+            - "8080:80"
+    back-end:
+        image: wp3fairtooling/tools_discoverer_backend 
+        restart: unless-stopped
+        network_mode: host

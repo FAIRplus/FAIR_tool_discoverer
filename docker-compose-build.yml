@@ -1,0 +1,25 @@
+version: '3.8'
+
+services: 
+    back-end:
+        build: ./FAIR_tool_discoverer_backend/api
+        restart: unless-stopped
+        network_mode: host
+
+    mongodb:
+        container_name: mongo_dev
+        image: mongo
+        ports:
+        - '27018:27017'
+
+    mongo-seed:
+        container_name: mongo_seed
+        build: ./FAIR_tool_discoverer_backend/database/mongo-seed
+        depends_on:
+            - 'mongodb'
+
+    prepare-data:
+        container_name: prepare_data
+        build: ./FAIR_tool_discoverer_backend/database/prepare-data
+        depends_on:
+            - 'mongo-seed'

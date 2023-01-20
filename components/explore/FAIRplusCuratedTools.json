@@ -1,0 +1,89 @@
+[
+    {
+        "category": "Data query and retrieval",
+        "tools": [
+            "TAMR", 
+            "Bert", 
+            "Termite", 
+            "Oracle clinical", 
+            "GeoBoost2", 
+            "MartView", 
+            "CLOBNET", 
+            "PDBUSQLExtractor", 
+            "repo", 
+            "SNPator", 
+            "PyGMQL", 
+            "PlantPIs", 
+            "BAGET", 
+            "NCBI Resources", 
+            "CPAD" 
+        ]
+    },
+    {
+        "category": "Data Transformation",
+        "tools": [
+            "SDTM", 
+            "TriFacta",
+            "OMOP",
+            "Collibra",
+            "Apache Hadoop",
+            "Talend",
+            "Informatica",
+            "OpenRefine-metadata-extension",
+            "DISQOVER",
+            "Query Tabular",
+            "ms-data-core-api"
+        ]
+    },
+    {
+        "category": "Data Deposition",
+        "tools":[
+            "REDCap",
+            "TransMART",
+            "Stardog",
+            "Postgresql",
+            "Chemotion"
+        ]   
+    },
+    {
+        "category": "Ontology Annotation",
+        "tools": [
+            "ZOOMA",
+            "NCBI BioPortal Annotator",
+            "BioBert",
+            "Termite",
+            "PoolParty Semantic Suite",
+            "OntoMaton",
+            "Prodigy",
+            "OntoText"
+        ]
+    },
+    {
+        "category": "Ontology Mapping",
+        "tools": [
+            "OxO"
+        ]
+    },
+    {
+        "category": "Ontology Management",
+        "tools":[
+            "AberOWL",
+            "BioPortal",
+            "Centree Ontology Manager",
+            "OLS",
+            "Ontobee",
+            "PoolParty"
+        ]   
+    },
+    {
+        "category": "Ontology engineering",
+        "tools": [
+            "eNanoMapper Slimmer",
+            "OWLAPI",
+            "Protégé",
+            "ROBOT",
+            "TopBraid Composer",
+            "VocBench"
+        ]
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "@id": null,
+        "_id": "6347e83184bd175c2135baaf",
+        "authors": [],
+        "bioschemas": false,
+        "citations": [],
+        "citations_other": [],
+        "description": [
+            "NxtIRFdata is a companion package for NxtIRF, which is an IRFinder- based R package for Intron Retention and Alternative Splicing quantitation for RNA-seq BAM files. NxtIRFdata contains Mappability files required for the generation of human and mouse references. NxtIRFdata also contains a synthetic genome reference and example BAM files used to test NxtIRF. BAM files are based on 6 samples from the Leucegene dataset provided by NCBI Gene Expression Omnibus under accession number GSE67039.",
+            "Data for NxtIRF"
+        ],
+        "documentation": [],
+        "download": [
+            "https://bioconductor.org/packages/3.14/data/experiment/src/contrib/NxtIRFdata_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/NxtIRFdata_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-nxtirfdata/bioconductor-nxtirfdata_1.0.0_src_all.tar.gz",
+            "https://conda.anaconda.org/bioconda/noarch/bioconductor-nxtirfdata-1.0.0-r41hdfd78af_0.tar.bz2",
+            "https://anaconda.org/bioconda/bioconductor-nxtirfdata/1.0.0/download/noarch/bioconductor-nxtirfdata-1.0.0-r41hdfd78af_0.tar.bz2",
+            "https://bioarchive.galaxyproject.org/NxtIRFdata_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.14/data/experiment/src/contrib/NxtIRFdata_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-nxtirfdata/bioconductor-nxtirfdata_1.0.0_src_all.tar.gz"
+        ],
+        "edam_operations": [],
+        "edam_topics": [],
+        "https": false,
+        "input": [],
+        "input_format_labels": null,
+        "inst_instr": true,
+        "license": [
+            "MIT + file LICENSE"
+        ],
+        "links": [
+            "https://bioconductor.org/packages/3.14/data/experiment/html/NxtIRFdata.html",
+            "https://bioconductor.org/packages/3.14/data/experiment/src/contrib/NxtIRFdata_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/NxtIRFdata_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-nxtirfdata/bioconductor-nxtirfdata_1.0.0_src_all.tar.gz",
+            "https://conda.anaconda.org/bioconda/noarch/bioconductor-nxtirfdata-1.0.0-r41hdfd78af_0.tar.bz2"
+        ],
+        "matches": [
+            "accession"
+        ],
+        "name": "nxtirfdata",
+        "operational": true,
+        "os": [
+            "Linux",
+            "Mac",
+            "Windows"
+        ],
+        "output": [],
+        "output_format_labels": null,
+        "raw_score": 1,
+        "repository": [],
+        "score": 1,
+        "semantics": {
+            "inputs": [],
+            "operations": [],
+            "outputs": [],
+            "topics": []
+        },
+        "source": [
+            "bioconda_recipes",
+            "bioconda_conda",
+            "opeb_metrics",
+            "bioconda"
+        ],
+        "sources_labels": {
+            "bioconda": "https://conda.anaconda.org/bioconda/noarch/bioconductor-nxtirfdata-1.0.0-r41hdfd78af_0.tar.bz2"
+        },
+        "src": [
+            "https://bioconductor.org/packages/3.14/data/experiment/src/contrib/NxtIRFdata_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/NxtIRFdata_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-nxtirfdata/bioconductor-nxtirfdata_1.0.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/NxtIRFdata_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.14/data/experiment/src/contrib/NxtIRFdata_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-nxtirfdata/bioconductor-nxtirfdata_1.0.0_src_all.tar.gz"
+        ],
+        "ssl": true,
+        "termsUse": false,
+        "test": false,
+        "type": "lib",
+        "version": [
+            "1.0",
+            "1.0.0",
+            "None"
+        ]
+    }
+]

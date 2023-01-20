@@ -1,0 +1,415 @@
+[
+  {
+    "@id": null,
+    "_id": "6347e83484bd175c213616de",
+    "authors": [
+      "tuncadogan"
+    ],
+    "bioschemas": true,
+    "citations": [
+      {
+        "cit_count": 0,
+        "citations": [],
+        "doi": "10.7287/peerj.preprints.26663v2",
+        "ref_count": 0,
+        "refs": [],
+        "title": "HPO2GO: prediction of human phenotype ontology term associations using cross ontology annotation co-occurrences",
+        "trace": {
+          "x": [],
+          "y": []
+        },
+        "year": 2018
+      }
+    ],
+    "citations_other": [],
+    "curation": [],
+    "description": [
+      "Mapping between HPO and GO terms",
+      "Prediction of human phenotype ontology term associations using cross ontology annotation co-occurrences.\n\nMapping between HPO and GO terms.\n\nIf you find HPO2GO useful, please consider citing this publication:.\n\nMapping between Human Phenotype Ontology (HPO) and Gene Ontology (GO) terms for the prediction of gene/protein - function - phenotype - disease associations.\n\nIn this study, a novel approach is proposed for the identification of relationships between biomedical entities by automatically mapping phenotypic abnormality defining HPO terms with biomolecular function defining GO terms, where each association indicates the occurrence of the abnormality due to the loss of the biomolecular function expressed by the corresponding GO term"
+    ],
+    "documentation": [
+      [
+        "readme",
+        "README.md"
+      ]
+    ],
+    "download": [
+      "https://github.com/cansyl/HPO2GO.git"
+    ],
+    "edam_operations": [
+      {
+        "label": "Mapping",
+        "uri": "http://edamontology.org/operation_2429"
+      },
+      {
+        "label": "Named-entity and concept recognition",
+        "uri": "http://edamontology.org/operation_3280"
+      },
+      {
+        "label": "Protein function prediction",
+        "uri": "http://edamontology.org/operation_1777"
+      }
+    ],
+    "edam_topics": [
+      {
+        "label": "Gene expression",
+        "uri": "http://edamontology.org/topic_0203"
+      },
+      {
+        "label": "Protein interactions",
+        "uri": "http://edamontology.org/topic_0128"
+      },
+      {
+        "label": "Pathology",
+        "uri": "http://edamontology.org/topic_0634"
+      },
+      {
+        "label": "Ontology and terminology",
+        "uri": "http://edamontology.org/topic_0089"
+      },
+      {
+        "label": "Genotype and phenotype",
+        "uri": "http://edamontology.org/topic_0625"
+      }
+    ],
+    "https": false,
+    "input": [],
+    "input_format_labels": [],
+    "inst_instr": true,
+    "license": [
+      "GPL-3.0"
+    ],
+    "links": [
+      "https://github.com/cansyl/HPO2GO"
+    ],
+    "matches": [
+      "http://edamontology.org/operation_3280",
+      "http://edamontology.org/topic_0089",
+      "ontology annotation",
+      "annotation"
+    ],
+    "name": "hpo2go",
+    "operational": true,
+    "os": [
+      "Linux",
+      "Mac",
+      "Windows"
+    ],
+    "output": [],
+    "output_format_labels": [],
+    "raw_score": 6.7,
+    "repository": [
+      "https://github.com/cansyl/HPO2GO"
+    ],
+    "score": 1.0,
+    "semantics": {
+      "inputs": [],
+      "operations": [
+        "http://edamontology.org/operation_2429",
+        "http://edamontology.org/operation_3280",
+        "http://edamontology.org/operation_1777"
+      ],
+      "outputs": [],
+      "topics": [
+        "http://edamontology.org/topic_0203",
+        "http://edamontology.org/topic_0128",
+        "http://edamontology.org/topic_0634",
+        "http://edamontology.org/topic_0089",
+        "http://edamontology.org/topic_0625"
+      ]
+    },
+    "source": [
+      "opeb_metrics",
+      "github",
+      "biotools"
+    ],
+    "sources_labels": {
+      "biotools": "https://bio.tools/hpo2go",
+      "github": "https://github.com/cansyl/HPO2GO"
+    },
+    "src": [
+      "https://github.com/cansyl/HPO2GO.git"
+    ],
+    "ssl": true,
+    "termsUse": false,
+    "test": false,
+    "type": "cmd",
+    "version": [
+      "unknown"
+    ]
+  },
+  {
+    "@id": null,
+    "_id": "6347e83484bd175c2135f8fc",
+    "authors": [
+      "Tony Burdett",
+      "EMBL-EBI"
+    ],
+    "bioschemas": false,
+    "citations": [
+      {
+        "cit_count": 6,
+        "citations": [
+          {
+            "count": 3,
+            "year": "2012"
+          },
+          {
+            "count": 2,
+            "year": "2014"
+          },
+          {
+            "count": 1,
+            "year": "2015"
+          }
+        ],
+        "doi": "10.1186/2041-1480-2-s4-s3",
+        "pmcid": "PMC3194170",
+        "pmid": "21995944",
+        "ref_count": 15,
+        "refs": [
+          {
+            "count": 1,
+            "year": "2000"
+          },
+          {
+            "count": 1,
+            "year": "2003"
+          },
+          {
+            "count": 1,
+            "year": "2005"
+          },
+          {
+            "count": 1,
+            "year": "2006"
+          },
+          {
+            "count": 1,
+            "year": "2007"
+          },
+          {
+            "count": 4,
+            "year": "2008"
+          },
+          {
+            "count": 3,
+            "year": "2009"
+          },
+          {
+            "count": 3,
+            "year": "2010"
+          }
+        ],
+        "title": "Anatomy ontologies and potential users: bridging the gap.",
+        "trace": {
+          "x": [
+            "2012",
+            "2014",
+            "2015"
+          ],
+          "y": [
+            3,
+            2,
+            1
+          ]
+        },
+        "year": 2011
+      },
+      {
+        "cit_count": 49,
+        "citations": [
+          {
+            "count": 4,
+            "year": "2016"
+          },
+          {
+            "count": 17,
+            "year": "2017"
+          },
+          {
+            "count": 10,
+            "year": "2018"
+          },
+          {
+            "count": 11,
+            "year": "2019"
+          },
+          {
+            "count": 5,
+            "year": "2020"
+          },
+          {
+            "count": 2,
+            "year": "2021"
+          }
+        ],
+        "doi": "10.1093/nar/gkv1352",
+        "pmcid": "PMC4702932",
+        "pmid": "26673705",
+        "ref_count": 56,
+        "refs": [
+          {
+            "count": 1,
+            "year": "0"
+          },
+          {
+            "count": 1,
+            "year": "2005"
+          },
+          {
+            "count": 2,
+            "year": "2011"
+          },
+          {
+            "count": 4,
+            "year": "2012"
+          },
+          {
+            "count": 6,
+            "year": "2013"
+          },
+          {
+            "count": 9,
+            "year": "2014"
+          },
+          {
+            "count": 11,
+            "year": "2015"
+          },
+          {
+            "count": 22,
+            "year": "2016"
+          }
+        ],
+        "title": "The European Bioinformatics Institute in 2016: Data growth and integration.",
+        "trace": {
+          "x": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021"
+          ],
+          "y": [
+            4,
+            17,
+            10,
+            11,
+            5,
+            2
+          ]
+        },
+        "year": 2016
+      }
+    ],
+    "citations_other": [],
+    "curation": [
+      " Ontology Annotation"
+    ],
+    "description": [
+      "ZOOMA 2 is a search engine for automatic curation and a repository of annotation knowledge. It facilitates automated data annotation against a variety of ontologies by exploring context and previous annotation efforts as well as lexical matching"
+    ],
+    "documentation": [
+      [
+        "general",
+        "http://wwwdev.ebi.ac.uk/fgpt/zooma/docs"
+      ]
+    ],
+    "download": [],
+    "edam_operations": [
+      {
+        "label": "Annotation",
+        "uri": "http://edamontology.org/operation_0226"
+      }
+    ],
+    "edam_topics": [
+      {
+        "label": "Systems biology",
+        "uri": "http://edamontology.org/topic_2259"
+      },
+      {
+        "label": "Ontology and terminology",
+        "uri": "http://edamontology.org/topic_0089"
+      },
+      {
+        "label": "Data identity and mapping",
+        "uri": "http://edamontology.org/topic_3345"
+      }
+    ],
+    "https": false,
+    "input": [
+      {
+        "datatype": "http://edamontology.org/data_0968",
+        "formats": []
+      }
+    ],
+    "input_format_labels": [],
+    "inst_instr": false,
+    "license": [],
+    "links": [
+      "http://wwwdev.ebi.ac.uk/fgpt/zooma/"
+    ],
+    "matches": [
+      "http://edamontology.org/topic_0089",
+      "http://edamontology.org/operation_0226",
+      "annotation"
+    ],
+    "name": "zooma",
+    "operational": true,
+    "os": [
+      "Linux",
+      "Windows",
+      "Mac"
+    ],
+    "output": [
+      {
+        "datatype": "http://edamontology.org/data_3509",
+        "formats": []
+      }
+    ],
+    "output_format_labels": [],
+    "raw_score": 5.4,
+    "repository": [],
+    "score": 0.8059701493,
+    "semantics": {
+      "inputs": [
+        {
+          "datatype": "http://edamontology.org/data_0968",
+          "formats": []
+        }
+      ],
+      "operations": [
+        "http://edamontology.org/operation_0226"
+      ],
+      "outputs": [
+        {
+          "datatype": "http://edamontology.org/data_3509",
+          "formats": []
+        }
+      ],
+      "topics": [
+        "http://edamontology.org/topic_2259",
+        "http://edamontology.org/topic_0089",
+        "http://edamontology.org/topic_3345"
+      ]
+    },
+    "source": [
+      "opeb_metrics",
+      "biotools"
+    ],
+    "sources_labels": {
+      "biotools": "https://bio.tools/zooma",
+      "other": "http://wwwdev.ebi.ac.uk/fgpt/zooma/"
+    },
+    "src": [],
+    "ssl": false,
+    "termsUse": false,
+    "test": false,
+    "type": "web",
+    "version": [
+      "1"
+    ]
+  }
+]
