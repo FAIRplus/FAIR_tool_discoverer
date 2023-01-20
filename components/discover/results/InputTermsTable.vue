@@ -36,7 +36,7 @@ export default {
         return {
             inputsHeaders: [
                 {text: 'Keyword', value: 'keyword', width: '40%'},
-                {text: 'Weight', value: 'weight', width: '5%'}
+                {text: 'Weight', value: 'weight', width: '10%'}
             ]
         }
     },
