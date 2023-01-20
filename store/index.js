@@ -77,8 +77,7 @@ export const actions = {
 
     async GET_RESULTS_BY_ID({commit, state}, Id){
         //var URL = 'https://fair-tool-discoverer.bsc.es/api/result/fetch';
-        var URL = 'http://127.0.0.1:5000/result/fetch'
-        console.log('Making request to: ', + URL)
+        var URL = '/result/fetch'
         await this.$axios.get(URL, {
             params: {
                 id : Id
@@ -118,8 +117,7 @@ export const actions = {
     
     async GET_RESULTS_BY_QUERY({commit, state}, queryTerms){
         //let URL = 'https://fair-tool-discoverer.bsc.es/api/';
-        var URL = 'http://127.0.0.1:5000/';
-        await this.$axios.post(URL, {
+        await this.$axios.post('/', {
             data : {
                 textarea_content : queryTerms
             },
