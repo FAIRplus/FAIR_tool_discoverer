@@ -1,13 +1,10 @@
 <template>
     <v-container :id="smallViewPort">
-        <v-row class="mt-8">
-            <v-icon color="#3949AB">
-                mdi-help-circle
-            </v-icon>
-            <h4 class="text-h5 title ml-2">
-                How does the FAIRification Tool Discoverer work?
-            </h4>
-        </v-row>
+        <sectionTitle 
+            :title="'How does the FAIRification Tool Discoverer work?'"
+            :icon="'mdi-help-circle'"
+            />
+
         <v-row>
             <v-col 
                 cols="12"
@@ -15,7 +12,7 @@
                 md="8"
                 lg="6"
                 xl="6"
-                class="text-body-2 text-justify">
+                class="text-body-2 text-justify ma-auto">
                 The <b>FAIRification Tool Discoverer</b> identifies tools from public archives for given 
                 FAIRification capacities. 
                 The tools are collected from 
@@ -33,14 +30,10 @@
                 The tool list is ranked by confidence and relevance.
             </v-col>
         </v-row>
-        <v-row class="mt-8"> 
-            <v-icon color="#3949AB">
-                mdi-help-circle
-            </v-icon>
-            <h4 class="text-h5 title ml-2">
-                Input format
-            </h4>
-        </v-row>
+        <sectionTitle 
+            :title="'Input format'"
+            :icon="'mdi-help-circle'"
+            />
         <v-row>
             <v-col 
                 cols="12"
@@ -48,7 +41,7 @@
                 md="8"
                 lg="6"
                 xl="6"
-                class="text-body-2 text-justify"
+                class="text-body-2 text-justify ma-auto"
                 >
                 Introduce a term in the input bar and click "Add term to search" to include it into the kywords list to search. While typing, similar EDAM terms will be dispalyed as a dropdown. 
                 The list of keywords to search is displayed under the input bar as the terms are added to it.
@@ -68,14 +61,10 @@
                 Weights are recommended to be in the range (0,1).
             </v-col>
         </v-row>
-        <v-row class="mt-8"> 
-            <v-icon color="#3949AB">
-                mdi-help-circle
-            </v-icon>
-            <h4 class="text-h5 title ml-2">
-                Troubleshooting
-            </h4>
-        </v-row>
+        <sectionTitle 
+            :title="'Troubleshooting'"
+            :icon="'mdi-help-circle'"
+            />
         <v-row class="mb-5">
             <v-col  
                 cols="12"
@@ -83,7 +72,7 @@
                 md="8"
                 lg="6"
                 xl="6"
-                class="text-body-2 text-justify"
+                class="text-body-2 text-justify ma-auto"
                 >
                 Empty lines and extra spaces are the main cause of input parsing errors. 
                 If no tools match the query, a specific message will be displayed.
@@ -97,7 +86,6 @@
     color: #3949AB !important;
     font-size: larger !important;
 }
-
 #large-view-port {
     margin-bottom: 3% !important;
     width: 90% !important;
@@ -128,9 +116,13 @@
 
 <script>
 import screenshot from '../static/img/help_screenshot.png'
+import sectionTitle from '../components/sectionTitle.vue'
 
 export default {
     name: 'Help',
+    components: {
+        sectionTitle
+    },
     data() {
         return {
             screenshot: screenshot

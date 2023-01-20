@@ -1,13 +1,9 @@
 <template>
      <v-container :id="smallViewPort">
-        <v-row class="mt-8">
-            <v-icon color="#3949AB">
-                mdi-tools
-            </v-icon>
-            <h4 class="text-h5 title ml-2">
-                What tools to use for FAIRification tasks?
-            </h4>
-        </v-row>
+        <sectionTitle
+            :title="'What tools to use for FAIRification tasks?'"
+            icon="mdi-tools"
+            />
         <v-row>
             <v-col 
                 cols="12"
@@ -15,7 +11,7 @@
                 md="8"
                 lg="6"
                 xl="6"
-                class="text-body-2 text-justify"
+                class="text-body-2 text-justify ma-auto"
                 >
                 The <b>FAIRification Tool Discoverer</b> suggests tools for common FAIRification tasks. <br>
                 The tools are collected from public archives and curated for FAIRification capabilities 
@@ -88,10 +84,13 @@
 
 </style>
 <script>
-import { computed } from 'vue';
 import curatedTools from '../components/explore/FAIRplusCuratedTools.json'
+import sectionTitle from '../components/sectionTitle.vue'
 export default {
     name: 'FAIRification',
+    components: {
+        sectionTitle
+    },
     data () {
         return {
             curatedTools: curatedTools,
