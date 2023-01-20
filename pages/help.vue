@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container :id="smallViewPort">
         <v-row class="mt-8">
             <v-icon color="#3949AB">
                 mdi-help-circle
@@ -9,7 +9,13 @@
             </h4>
         </v-row>
         <v-row>
-            <v-col cols="8" class="text-body-2 text-justify">
+            <v-col 
+                cols="12"
+                sm="10"
+                md="8"
+                lg="6"
+                xl="6"
+                class="text-body-2 text-justify">
                 The <b>FAIRification Tool Discoverer</b> identifies tools from public archives for given 
                 FAIRification capacities. 
                 The tools are collected from 
@@ -36,7 +42,14 @@
             </h4>
         </v-row>
         <v-row>
-            <v-col cols="8" class="text-body-2 text-justify">
+            <v-col 
+                cols="12"
+                sm="10"
+                md="8"
+                lg="6"
+                xl="6"
+                class="text-body-2 text-justify"
+                >
                 Introduce a term in the input bar and click "Add term to search" to include it into the kywords list to search. While typing, similar EDAM terms will be dispalyed as a dropdown. 
                 The list of keywords to search is displayed under the input bar as the terms are added to it.
                 The label on the right indicates the type os EDAM term, either 'operation' or 'topic'. Once a term is added to the list, you can modify its weight by clicking the 'Edit' bottom on the right.
@@ -64,7 +77,14 @@
             </h4>
         </v-row>
         <v-row class="mb-5">
-            <v-col  cols="8" class="text-body-2 text-justify">
+            <v-col  
+                cols="12"
+                sm="10"
+                md="8"
+                lg="6"
+                xl="6"
+                class="text-body-2 text-justify"
+                >
                 Empty lines and extra spaces are the main cause of input parsing errors. 
                 If no tools match the query, a specific message will be displayed.
             </v-col>
@@ -77,6 +97,17 @@
     color: #3949AB !important;
     font-size: larger !important;
 }
+
+#large-view-port {
+    margin-bottom: 3% !important;
+    width: 90% !important;
+    }
+
+#small-view-port {
+    font-size: smaller !important;
+    margin-left: auto !important;
+    width: 95% !important;
+    }
 
 .link-icon{
     color:#300761;
@@ -103,6 +134,16 @@ export default {
     data() {
         return {
             screenshot: screenshot
+        }
+    },
+    computed: {
+        smallViewPort() {
+            if(this.$vuetify.breakpoint.xs){
+                return 'small-view-port'
+            }
+            else{
+                return 'large-view-port'
+            }
         }
     }
 }
