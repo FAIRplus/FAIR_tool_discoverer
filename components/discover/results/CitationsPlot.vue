@@ -51,7 +51,12 @@ export default {
          showPlot(){
             var total = 0
             for (let i = 0; i < this.pubPlotProps.citations.length; i++) {
-                total += this.pubPlotProps.citations[i]['trace']['y'].reduce((a, b) => a + b, 0)
+                if(this.pubPlotProps.citations[i]['trace'] != undefined){
+                    total += this.pubPlotProps.citations[i]['trace']['y'].reduce((a, b) => a + b, 0)
+                }else{
+                    total += 0
+                }
+                
             }
             if(total>0)
                 return(true)

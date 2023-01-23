@@ -7,9 +7,7 @@ import createCache from "vuex-cache";
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
-export const plugins = [
-    createCache()
-]
+
 
 
 // central store

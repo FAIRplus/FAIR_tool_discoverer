@@ -11,7 +11,7 @@
         <template v-slot:[`body`]="{ items }">
             <tbody>
                 <tr
-                    v-for="(item, key) in items" :key=index
+                    v-for="(item, index) in items" :key=index
                     >
                     <td class="text-caption">
                         {{ formatTerm(item.keyword) }}
