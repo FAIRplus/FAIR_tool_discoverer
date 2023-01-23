@@ -247,7 +247,7 @@ export default {
                     sortable: false, 
                     filterable: true,
                     value: 'source', 
-                    width: '2.5rem',
+                    width: '8rem',
                     filter: value => {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
                     }
@@ -272,7 +272,7 @@ export default {
                     text: 'Input Format', 
                     value: 'input_formats', 
                     filterable: true,
-                    width: '9rem',
+                    width: '7rem',
                     filter: value => {
                         if( value != null && this.inputValues != null ){
                             return this.filterDataType(this.inputValues, value)
@@ -285,7 +285,7 @@ export default {
                     text: 'Output Format', 
                     value: 'output_formats', 
                     filterable: false,
-                    width: '9rem',
+                    width: '7rem',
                     filter: value => {
                         if( value != null && this.outputValues != null ){
                             return this.filterDataType(this.outputValues, value)

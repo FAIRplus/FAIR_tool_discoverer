@@ -1,6 +1,6 @@
 <template>
     <v-container
-        :fluid = "$vuetify.breakpoint.mdAndDown" 
+        :fluid = "$vuetify.breakpoint.lgAndDown" 
         >
         <v-container
             :id="contianerId"

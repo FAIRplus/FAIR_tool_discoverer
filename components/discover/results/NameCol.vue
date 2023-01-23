@@ -17,6 +17,9 @@ export default {
         Sources,
         Type
     },
+    mounted() {
+        this.name = this.name.replace(/_/g, ' ');
+    }
 }
 
 </script>
@@ -28,6 +31,8 @@ export default {
     font-weight: 500;
     line-height: 1.6;
     letter-spacing: 0.0075em;
+    max-width: 8rem;
+    word-break: break-word;
 };
 
 </style>
