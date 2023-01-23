@@ -86,7 +86,7 @@ export default {
         //        },
             // fetch the data when the view is created and the data is
             // already being observed
-        //    { immediate: true }
+        //    { immediate: false }
         //)
     },
     computed: {
@@ -121,8 +121,10 @@ export default {
         async checkIdInParameters(){
             // Check if id is queried
             // If it is, fetch the results from the API
-            // ⚒️ console.log('Checking parameters: ', this.$route)
+            console.log('Checking parameters: ', this.$route)
+
             if(this.$route.query.id!=undefined){
+                console.log('Fetching results by id: ', this.$route.query.id)
                 this.$store.dispatch('fetchResultsById', this.$route.query.id)
                 }
             },

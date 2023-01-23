@@ -3,11 +3,10 @@ import Vuex from "vuex";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import createCache from "vuex-cache";
+import route from "vue-router";
 
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
-
-
 
 
 // central store
@@ -66,17 +65,17 @@ export const actions = {
         commit('setQuery', true);
         commit('setQuerying', true);
 
+        console.log('fetchResultsById')
 
-        await this.cache.dispatch('GET_RESULTS_BY_ID', Id);
+        await this.dispatch('GET_RESULTS_BY_ID', Id);
 
         commit('setQuerying', false);
         
     },
 
     async GET_RESULTS_BY_ID({commit, state}, Id){
-        //var URL = 'https://fair-tool-discoverer.bsc.es/api/result/fetch';
-        var URL = '/result/fetch'
-        await this.$axios.get(URL, {
+        console.log('GET_RESULTS_BY_ID')
+        await this.$axios.get( '/result/fetch' , {
             params: {
                 id : Id
           },
@@ -88,7 +87,8 @@ export const actions = {
             console.log(response);  
             if(response.data.message.result_found==true){          
                 commit('setResults', response.data.message)
-                commit('setResultsURL', response.data.message.run_id);
+                
+                commit('setResultsURL', Id);
             }
             commit('setResultsNotFound', !response.data.message.result_found);
         })
@@ -155,8 +155,7 @@ export const mutations = {
         state.results = results;
     },
     setResultsURL(state, run_id){
-        const nuxtURL = 'http://localhost:3000/';
-        const resultsURL = nuxtURL + 'discover?id=' + run_id;
+        const resultsURL = window.location.origin + '/discover?id=' + run_id;
         state.resultsURL = resultsURL;
     },
     setResultsNotFound(state, resultsNotFound){
