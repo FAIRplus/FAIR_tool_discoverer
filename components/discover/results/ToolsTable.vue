@@ -121,7 +121,7 @@
                             />
 
                         <NameCol 
-                            :name="item.name" 
+                            :name="item.label[0]" 
                             :sources="item.sources_labels" 
                             :type="item.type"
                             class="pb-2 pt-1 pr-1"
