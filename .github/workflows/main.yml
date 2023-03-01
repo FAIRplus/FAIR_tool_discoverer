@@ -1,9 +1,8 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - 'main'
+  release:
+    types: [published]
 
 jobs:
   docker:
@@ -29,9 +28,6 @@ jobs:
           tags: emartps/tools-discoverer-nuxt:latest
   
   redeploy:
-    on:
-    release:
-      types: [published]
     name: Redeploy webhook call
     runs-on: ubuntu-18.04
     needs: [docker]
