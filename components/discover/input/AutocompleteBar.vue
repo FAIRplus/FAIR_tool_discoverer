@@ -1,9 +1,10 @@
 <template>
     <v-row>
         <v-col 
-            cols="10"
-            sm="8"
-            md="6">
+            cols="12"
+            sm="7"
+            md="4"
+            >
             <!-- `item-text` is used for the search -->
             <!-- `item-value` is assigned to `v-model` (`input` variable) -->
             <v-autocomplete
@@ -21,6 +22,8 @@
                 small-chips
                 chips
                 solo
+                hide-details
+                class="text-body-2"
                 >
                 <template v-slot:selection="data">
                     <v-chip
@@ -46,28 +49,44 @@
                             {{ getLabel(data.item) }}
                         </v-chip>
                         <v-list-item-content>
-                            <v-list-item-title v-html="data.item.PreferredLabel"></v-list-item-title>
+                            <v-list-item-title class="text-body-2" v-html="data.item.PreferredLabel"></v-list-item-title>
                         </v-list-item-content>
                     </template>
                 </template>
             </v-autocomplete>
         </v-col>
         <v-col 
-            cols="1"
-            class="mt-2">
+            sm="5"
+            md="3"
+            cols="12"
+            class="d-flex align-center">
             <v-btn
                 color="#3949AB"
-                class="button"
+                class="button mr-auto"
                 dark
                 @click="addThisItem"
                 >
-                <small
-                    v-if="$vuetify.breakpoint.smAndUp"
-                    >
-                    ADD TERM <br>TO SEARCH
+                <small>
+                    ADD <br> TERM
                 </small>
-                <v-icon>mdi-plus</v-icon>
             </v-btn>
+            <v-btn
+                color="success"
+                dark
+                @click="$emit('run-discoverer')"
+                class="mr-1 ml-4"
+                >
+                <small> RUN <br> SEARCH</small>
+            </v-btn>
+            <v-btn
+                color="grey"
+                dark
+                @click="$emit('clear-terms')"
+                class="ml-1"
+                >
+                <small> CLEAR <br>TERMS</small>
+            </v-btn>
+            
 
         </v-col>
     </v-row>
@@ -105,9 +124,6 @@ export default {
                 'Label': Label,
                 'ClassId': ClassId
             }
-
-            // ⚒️ console.log('Payload to emit to parent: ', payload)
-
             // add the term to the terms array (in parent component)
             this.$emit('add-item', payload)
         },

@@ -15,11 +15,11 @@
                 </h4>
             </v-row>
             <v-row>
-                <v-col cols="8" class="text-body-2 text-justify">
-                    Introduce search terms and respective weights (optionally).
+                <v-col cols="12" class="text-body-2 text-justify">
+                    Introduce search terms and, optionally, respective weights.
                 </v-col>
             </v-row>
-            <v-row class="mt-8">
+            <v-row class="mt-6">
                 <Input @click='runDiscoverer'/>
             </v-row>
             <v-row v-if="querying" class="pt-10">
