@@ -10,9 +10,6 @@
                 >
                 <v-expansion-panel-header>
                     <v-row class="ml-5">
-                        <v-icon color="#3949AB">
-                            mdi-dots-grid
-                        </v-icon>
                         <h4 class="text-h5 title ml-2">
                         Results
                         </h4>
@@ -25,6 +22,26 @@
                     </template>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
+                    <v-row class="ml-10 mt-2">
+                        <v-icon 
+                            color="#3949AB"
+                            small
+                            >
+                            mdi-link-variant
+                        </v-icon>
+                        <span class="text-subtitle-1 title ml-2">URL: </span>
+                        <span>
+                            <a :href="resultsURL" target='_blank' class="ml-2 text-body-2">{{ resultsURL }}</a>
+                        </span>
+                    </v-row>
+                    <v-row class="ml-10 mt-6">
+                        <v-icon color="#3949AB" small>
+                                mdi-dots-grid
+                        </v-icon>
+
+                        <span class="text-subtitle-1 title ml-2">Tools: </span>
+                    </v-row>
+
                     <ToolsTable :tools="tools"/>
                     
                 </v-expansion-panel-content>
@@ -62,18 +79,7 @@
         </v-expansion-panels>
 
         
-        <v-row class="ml-10 mt-2">
-            <v-icon 
-                color="#3949AB"
-                small
-                >
-                mdi-link-variant
-            </v-icon>
-            <span class="text-subtitle-1 title ml-2">URL: </span>
-            <span>
-                <a :href="resultsURL" target='_blank' class="ml-2 text-body-2">{{ resultsURL }}</a>
-            </span>
-        </v-row>
+        
     </div>
 </template>
 <style scoped>

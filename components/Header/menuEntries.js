@@ -16,6 +16,11 @@ const menuEntries = [
 		to: '/help',
 		icon: 'mdi-help-circle',
 	},
+	{
+		title: 'API',
+		to: '/api',
+		icon: 'mdi-information',
+	}
 ];
 
 export default menuEntries;

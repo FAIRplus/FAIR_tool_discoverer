@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div id="#navbar">
         <v-navigation-drawer
 			v-model="openNavMobile"
 			fixed

@@ -116,9 +116,7 @@ export const actions = {
     async GET_RESULTS_BY_QUERY({commit, state}, queryTerms){
         //let URL = 'https://fair-tool-discoverer.bsc.es/api/';
         await this.$axios.post('/', {
-            data : {
-                textarea_content : queryTerms
-            },
+            data: queryTerms,
             headers: {
                 'Content-Type': 'application/json',
                 }

@@ -1,11 +1,12 @@
 <template>
     <v-btn
-        class="pl-1 pr-1"> 
+        class="pl-2 pr-1"
+        > 
         <span class="filter">{{ label }}</span>
             <v-img
                 v-if="icon"
                 :src="require(`../../../static/img/${label}-logo-black.svg`)"
-                max-width='30'
+                max-width='20'
             ></v-img>
     </v-btn>
 </template>

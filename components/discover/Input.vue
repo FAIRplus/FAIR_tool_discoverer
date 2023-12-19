@@ -137,8 +137,8 @@ export default {
         addNewItem(payload){
             var item = {
                 'label':payload.Label, 
-                'ClassId':payload.ClassId,
-                'weight':'1.00', 
+                'id':payload.ClassId,
+                'weight':1.00, 
                 'isEditing': false
                 }
             this.inputTerms.push(item)
@@ -161,7 +161,7 @@ export default {
                 let newItem = {
                     'label':keywords[i]['label'], 
                     'weight':keywords[i]['weight'],
-                    'ClassId':keywords[i]['ClassId'],
+                    'id':keywords[i]['ClassId'],
                     'isEditing':false
                 }
                 this.inputTerms.push(newItem)
@@ -171,6 +171,11 @@ export default {
             // Trigger run discoverer in parent component (discover.vue page) 
             // Called by Run Search button
             // ⚒️ console.log('Run discorer with terms: ', this.inputTerms)
+            // delete the isEditing property from the terms
+            // if id is null, replace with ""
+            this.inputTerms.forEach(function (item) {
+                delete item.isEditing;
+            });
             this.$emit("click", this.inputTerms)
         },
         clearTerms(){

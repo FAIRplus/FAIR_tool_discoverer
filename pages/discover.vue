@@ -32,9 +32,9 @@
                 ></v-progress-linear>
             </v-row>
         </v-container>
-        <v-container fluid>
-            <v-row v-if="queryDone">
-                <div v-if="results" class="pt-5 mx-auto resultsPanel">
+        <v-container fluid ref="results">
+            <v-row v-if="queryReady">
+                <div v-if="results" class="pt-5 mx-auto resultsPanel" >
                     <Results :tools="results.tools" :inputParameters="results.input_parameters" :run_id="results.runId" />
                 </div>
             
@@ -107,14 +107,28 @@ export default {
             results: 'getResults',
             resultsNotFound: 'getResultsNotFound',
             resultsError: 'getResultsError',
-        })
+        }),
+        queryReady() {
+            // Watch the queryDone variable
+            // If it is true, scroll to the results
+            if(this.results){
+                this.scrollToResults()
+                console.log('Query done: ', true)
+                return true
+                }
+            else{
+                console.log('Query done: ', false)
+                return false
+            }
+            
+            }
     },
     data () {
       return {
         formatErrorVisible: false,
         value: 0,
         show: true,
-        terms:[]
+        terms:[],
       }
     },
     methods: {
@@ -131,11 +145,23 @@ export default {
         // Run the discoverer with the terms in textArea 
         // Called when the button is clicked
         async runDiscoverer (terms) {
-            // ⚒️ console.log('Terms: ", terms)
-            this.$store.dispatch('fetchResultsByQuery', terms)
+            console.log("Terms: " + terms)
+            this.$store.dispatch('fetchResultsByQuery', terms)            
+        },
+        scrollToResults() {
+              this.$nextTick(() => {
+                this.scrollElementIntoViewMinusBar(this.$refs.results);
+              });
             },
+        scrollElementIntoViewMinusBar(element) {
+            if (element) {
+                const navbarHeight = 100;
+                const scrollPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+            }
         }
     }
+}
 </script>
 <style scoped>
 #discoverer-md-and-down{
