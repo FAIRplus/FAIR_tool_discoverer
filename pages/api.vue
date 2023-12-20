@@ -4,7 +4,7 @@
             width="100%" 
             height="110%" 
             frameborder="0"
-            src="http://localhost:8000/docs"
+            src="https://fair-tool-discoverer.bsc.es/api/docs"
             scrolling="yes"
             ></iframe>
 
