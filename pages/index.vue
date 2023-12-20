@@ -60,18 +60,18 @@ export default {
                 to: '/explore',
                 color: '#3949AB'
               },
-              {// API Documentation
-                icon: 'mdi-book-open-page-variant',
-                title: 'API Documentation',
-                text: 'Learn how to use the FAIRification Tool Discoverer API.',
-                to: '/api',
-                color: '#3949AB'
-              },
               { // Know more
                 icon: 'mdi-help',
                 title: 'Know more',
                 text: 'Learn more about the FAIRification Tool Discoverer',
                 to: '/help',
+                color: '#3949AB'
+              },
+              {// API Documentation
+                icon: 'mdi-book-open-page-variant',
+                title: 'API Documentation',
+                text: 'Learn how to use the FAIRification Tool Discoverer API.',
+                to: '/api',
                 color: '#3949AB'
               }
             ]  

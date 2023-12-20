@@ -1,6 +1,12 @@
 // Displayed in Header and Footer
 
 const menuEntries = [
+	// home
+	{
+		title: 'Home',
+		to: '/',
+		icon: 'mdi-home',
+	},
 	{
 		title: 'Discover',
 		to: '/discover',

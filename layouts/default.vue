@@ -12,7 +12,6 @@
 <style>
 .v-footer {
     padding-top: 1%;
-    font-size: smaller;
     width: 100%;
     position: static;
     bottom:0;

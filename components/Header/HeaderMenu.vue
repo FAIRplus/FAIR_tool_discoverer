@@ -23,95 +23,46 @@
 						>
 						{{ item.title }}
 					</v-list-item-title>
-				</v-list-item>
-				<v-divider></v-divider>
-				<v-list-item
-					v-for="(item, i) in moreOptions"
-					:key="i"
-					:to="item.to"
-					:href="item.href"
-					:target="item.target"
-					:nuxt="item.nuxt"
-					exact
-					>	
-					<v-list-item-icon class="mr-2">
-						<v-icon>{{ item.icon }}</v-icon>
-					</v-list-item-icon>
-					<v-list-item-title
-						class="text-body-2" 
-						>
-						{{ item.title }}
-					</v-list-item-title>
-				</v-list-item>
-				
+				</v-list-item>			
 			</v-list> 
-		
-		
 		</v-navigation-drawer> 
 
 		<v-app-bar fixed app elevation="2" color="white" class="pt-1">
 			<div class="bar">
-			<v-btn
-				v-if="$vuetify.breakpoint.smAndDown"
-				icon
-				data-testid="btn-toggle-menu"
-				aria-label="Toggle Menu"
-				@click.stop="handleToggleOpen"
-			>
-				<v-icon>mdi-menu</v-icon>
-			</v-btn>
-			
-			<v-row v-if="$vuetify.breakpoint.mdAndUp" justify="space-between" class="mt-0 pt-0">
-				<v-col cols="2">
-					<nuxt-link to="/" aria-label="Home" class="text-caption">
-						<p>FAIRification <br> Tool Discoverer</p>
-					</nuxt-link>
-				</v-col>
-				<v-col cols="6" class="text-center">
-					<v-btn
-						v-for="(item, index) in menuEntries"
-						:key="index"
-						:to="item.to"
-						active-class="active-btn"
-						text
-					>
-						{{ item.title }}
-					</v-btn>
-				</v-col>
-				<v-col cols="1" offset="1">
-					<v-menu
-						left
-					>
-						<template v-slot:activator="{ on, attrs }">
-						<v-btn
-							icon
-							small
-							v-bind="attrs"
-							v-on="on"
-							class="mt-1"
-						>
-							<v-icon>mdi-dots-vertical</v-icon>
-						</v-btn>
-						</template>
+				<v-btn
+					v-if="$vuetify.breakpoint.smAndDown"
+					icon
+					data-testid="btn-toggle-menu"
+					aria-label="Toggle Menu"
+					@click.stop="handleToggleOpen"
+				>
+					<v-icon>mdi-menu</v-icon>
+				</v-btn>
+				
+				<v-row v-if="$vuetify.breakpoint.mdAndUp" class="d-flex mt-0 pt-0">
+					<v-col cols="1" class="justify-center align-center">
+						<nuxt-link to="/" aria-label="Home" class="text-caption">
+							<p>FAIRification <br> Tool Discoverer</p>
+						</nuxt-link>
+					</v-col>
+					<v-col cols="10">
+						<div class="d-flex justify-center">
+							<v-btn
+								v-for="(item, index) in menuEntries"
+								:key="index"
+								:to="item.to"
+								active-class="active-btn"
+								text
+							>
+								{{ item.title }}
+							</v-btn>
+						</div>
+					</v-col>
+					<v-col cols="1">
+					</v-col>
 
-						<v-list>
-						<v-list-item
-							v-for="item in moreOptions"
-							:key="item.title"
-							@click="() => {}"
-							:to="item.to"
-						>
-							<v-icon small>{{item.icon}}</v-icon>
-							<v-list-item-title class="text-caption ml-1">{{ item.title }}</v-list-item-title>
-							
-						</v-list-item>
-						</v-list>
-					</v-menu>
-				</v-col>
-			</v-row>
-			<!-- <v-btn v-if="$vuetify.breakpoint.mdAndUp" depressed color="ml-3 primary">
-				<v-icon left>mdi-login-variant</v-icon> Login
-			</v-btn> -->
+						
+				</v-row>
 			</div>
 		</v-app-bar>
 	</div>
@@ -146,7 +97,6 @@
 </style>
 <script>
 import menuEntries from './menuEntries';
-import moreOptions from './moreOptions';
 import logo from '../../static/v.png';
 
 export default {
@@ -158,7 +108,6 @@ export default {
         return {
             openNavMobile: false,
             menuEntries,
-			moreOptions,
             logo,
         };
     },
