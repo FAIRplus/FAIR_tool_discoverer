@@ -1,22 +1,21 @@
 <template>
-    <td>
-        <v-chip-group
+    <td class="pt-2 pb-2">
+        <div
             v-if="items != null"
-            column>
+            v-for="(item) in elementsList"
+            :key="items.indexOf(item)"
+            >
                 <v-chip
-                    v-for="(item) in elementsList" 
-                    :key="items.indexOf(item)"
                     small
-                    flex
                     outlined
                     :href="edamBrowserLink(item.uri)" 
                     target="_blank"
+                    class="custom-chip mt-1 "
                     >
                    {{ item.label }}
-                </v-chip>
-            
-            <span v-if="dots">...</span>                      
-          </v-chip-group>        
+                </v-chip>                
+            </div>
+          <span v-if="items != null && dots"><a class="text-caption">more</a></span>  
     </td>
 </template>
 
@@ -30,10 +29,14 @@ export default {
     },
     computed: {
         elementsList() {
-            return this.trimListIfNotSelected(this.items, this.idx)
+            if(this.items){
+                return this.trimListIfNotSelected(this.items, this.idx)
+            }else{
+                return []
+            }
         },
         dots() {
-            if(this.items.length > 5){
+            if(this.items.length > 10){
                 if(this.arrowsUp == false){
                         return  true
                     }
@@ -51,7 +54,7 @@ export default {
             if(this.selected === idx){
                 return(list)
             }else{
-                var short_list = list.slice(0,5)
+                var short_list = list.slice(0,10)
                 return(short_list)
             }
         }
@@ -65,13 +68,19 @@ export default {
 .v-chip {
   height: auto !important;
   min-width: 0;
+  max-width: 95%;
   box-sizing: border-box;
 }
 
+.custom-chip {
+  max-width: 100%; /* Set the desired width for the chips */
+}
+
 .v-chip >>> .v-chip__content {
-    white-space: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
     height: auto !important;
-    flex-shrink: 3 !important;
     text-align: center;
 }
 

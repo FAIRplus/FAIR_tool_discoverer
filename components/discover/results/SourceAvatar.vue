@@ -1,21 +1,6 @@
 <template>
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <a :href="link" target='_blank'>     
-            <v-avatar
-                :color="avatarProps.color"
-                size="22"
-                class="ma-0 pa-0"
-                v-bind="attrs"
-                v-on="on"
-                >
-                <v-img :src="require(`../../../static/img/${avatarProps.src}`)"></v-img>
-            </v-avatar>
-        </a>
-        </template>
-        <span>{{ avatarProps.content }}</span>
-    </v-tooltip>
-</template>
+      
+  </template>
 
 
 <script>

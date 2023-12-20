@@ -1,6 +1,15 @@
 <template>
   <v-footer class="pt-0">
-    <v-row justify="space-between" class="ma-3 pr-5 pl-5 text--secondary">
+    <v-row justify="space-between" class="ma-3 text--secondary">
+      <v-col cols="1">
+          <v-img 
+            :src="figure" 
+            contain
+            class="ml-0 figure"
+            max-height="100"
+            max-width="100"></v-img>
+            <h5 class="mt-1 ml-1 text-subtitle darkgrey--text title">FAIRification <br> Tool Discoverer</h5>
+      </v-col>
       <v-col cols="3" class="text-body">
         <h4>Contact</h4>
         <p>
@@ -15,7 +24,7 @@
           </ul>
         </p>
       </v-col>
-      <v-col cols="3" class="text-body">
+      <v-col cols="2" class="text-body">
         <h4>Acknowledgements</h4>
         <p>
           This software is developed by 
@@ -48,17 +57,33 @@
   </v-footer>
 </template>
 
-<style scoped>
+<style scoped> 
+
+ .figure{
+  opacity: 0.7;
+ }
+
+  .title{
+    font-size: .8em !important;
+    line-height: normal;
+    font-weight: 400;
+  }
 
   .logo{
     margin: 1em;
     margin-top: 0%;
     height: 3.5em;
   }
+
 </style>
 <script>
 
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  data(){
+    return {
+      figure: require('../static/img/logo-clean-grey.svg'),
+    }
+  }
 }
 </script>

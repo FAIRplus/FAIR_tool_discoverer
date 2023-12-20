@@ -2,18 +2,25 @@
     <div>
         <v-row
             justify="start">
-            <v-col
-                v-for="source in avatars_present"
-                :key="source.label"
-                cols="1"
-                class="mr-1 ml-1"
+            <v-chip-group
+                column
+                class="ml-2 mt-2"
                 >
-                <SourceAvatar 
-                    :key="source.content" 
-                    :avatarProps="source"
-                    :sources_labels="itemSources" 
-                    />
-            </v-col>
+                <v-chip
+                    v-for="source in avatars_present"
+                    :key="source.label"
+                    :color="transparent(source.color)"
+                    small
+                    class="white--text text-caption pr-1 pl-1"
+                    > 
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-img :src="build_img_src(source)" max-width="25px" class="pa-0" contain v-on="on"></v-img>
+                        </template>
+                        <span>{{ source.content }}</span>
+                    </v-tooltip>
+                </v-chip>
+            </v-chip-group>
         </v-row>
     </div>
        
@@ -21,15 +28,10 @@
 
 
 <script>
-import SourceAvatar from './SourceAvatar.vue'
 
 export default {
     name: 'Sources',
     props: ['itemSources'],
-    components : {
-        SourceAvatar
-    },
-
     computed: {
         avatars_present(){
             const filtered = Object.keys(this.itemSources)
@@ -41,63 +43,63 @@ export default {
         return {
             avatars: {
                 biotools: {
-                    src:'elixir-logo.svg',
-                    color:'orange',
+                    src:'elixir-logo-black.svg',
+                    color:'#FFA500',
                     content:'bio.tools',
                     url:'bio.tools',
                     label: 'biotools',
                 },
                 bioconda: {
-                    src:'bioconda-logo.svg',
+                    src:'bioconda-logo-black.svg',
                     color:'#005500',
                     content:'bioconda',
                     url:'',
                     label:'bioconda'
                 },
                 github: {
-                    src:'github-logo.svg',
-                    color:'black',
+                    src:'github-logo-black.svg',
+                    color:'#000000',
                     content:'GitHub',
                     url:'github.org',
                     label:'github'
                 },
                 bioconductor: {
-                    src:'bioconductor-logo.svg',
+                    src:'bioconductor-logo-black.svg',
                     color:'#2f93ba',
                     content:'Bioconductor',
                     url:'',
                     label:'bioconductor'
                 },
                 galaxy: {
-                    src: 'galaxy-logo.svg',
+                    src: 'galaxy-logo-black.svg',
                     color: '#134798',
                     content: 'Galaxy Eu',
                     url:'',
                     label: 'galaxy'
                 },
                 toolshed: {
-                    src: 'galaxy-logo.svg',
+                    src: 'galaxy-logo-black.svg',
                     color: '#134798',
                     content: 'Galaxy Toolshed',
                     url:'',
                     label: 'galaxy'
                 },
                 sourceforge: {
-                    src: 'sourceforge-logo.svg',
+                    src: 'sourceforge-logo-black.svg',
                     color: '#ff6602',
                     content: 'SourceForge',
                     url:'',
                     label: 'sourceforge'
                 },
                 bitbucket: {
-                    src: 'bitbucket-logo.svg',
+                    src: 'bitbucket-logo-black.svg',
                     color: '#005ed9',
                     content: 'Bitbucket',
                     url:'',
                     label: 'bitbucket'
                 },
                 other: {
-                    src: 'other-logo.svg',
+                    src: 'other-logo-black.svg',
                     color: '#535682',
                     content: 'Homepage',
                     url:'',
@@ -105,6 +107,19 @@ export default {
                 }
             }
         }
+    },
+    methods:{
+        // build img require
+        build_img_src(source){
+            var img_src = require('../../../static/img/' + source.src)
+            return img_src
+        },
+        // make HEX color transparent
+        transparent(color){
+            var transparent_color = color + '40'
+            return transparent_color
+        }
+        
     }
 }
 </script>

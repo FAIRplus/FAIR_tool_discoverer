@@ -25,3 +25,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+v-chip{
+    max-width: 80%;
+}
+</style>

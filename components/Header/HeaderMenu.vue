@@ -40,6 +40,7 @@
 				</v-btn>
 				
 				<v-row v-if="$vuetify.breakpoint.mdAndUp" class="d-flex mt-0 pt-0">
+					
 					<v-col cols="1" class="justify-center align-center">
 						<nuxt-link to="/" aria-label="Home" class="text-caption">
 							<p>FAIRification <br> Tool Discoverer</p>
@@ -97,7 +98,7 @@
 </style>
 <script>
 import menuEntries from './menuEntries';
-import logo from '../../static/v.png';
+import logo from '../../static/img/logo-clean.png';
 
 export default {
     name: 'HeaderMenu',

@@ -1,4 +1,4 @@
-# FAIRification Tool Discoverer - Nuxt
+# FAIRification Tool Discoverer 
 
 Front-end of the FAIR Tools Obervatory. 
 

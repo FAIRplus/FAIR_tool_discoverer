@@ -28,6 +28,7 @@
                             multiple
                             dense
                             group
+                            color="indigo"
                             class="flex-wrap" 
                             >
                                 <FilterBtn 
@@ -51,6 +52,7 @@
                                 multiple
                                 dense
                                 group
+                                color="indigo"
                                 class="flex-wrap"
                             >   
                                 <FilterBtn  
@@ -252,11 +254,11 @@ export default {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
                     }
                 },
-                {text: 'Description', value: 'description', width: '15rem'},
+                {text: 'Description', value: 'description', width: '20rem'},
                 {
                     text: 'Curation', 
                     value: 'curation', 
-                    width: '6rem',
+                    width: '2rem',
                     filterable: true,
                     filter: value => {
                         if( value != null && this.curationValues != null ){
@@ -266,13 +268,13 @@ export default {
                         }
                     }
                 },
-                {text: 'Related Topics', value: 'edam_topics', width: '8rem'},
-                {text: 'Functionality', value: 'edam_operations', width: '8rem'},
+                {text: 'Related Topics', value: 'edam_topics', width: '7rem'},
+                {text: 'Functionality', value: 'edam_operations', width: '7rem'},
                 {
                     text: 'Input Format', 
                     value: 'input_formats', 
                     filterable: true,
-                    width: '7rem',
+                    width: '8rem',
                     filter: value => {
                         if( value != null && this.inputValues != null ){
                             return this.filterDataType(this.inputValues, value)

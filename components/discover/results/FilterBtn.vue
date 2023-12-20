@@ -5,7 +5,7 @@
         <span class="filter">{{ label }}</span>
             <v-img
                 v-if="icon"
-                :src="require(`../../../static/img/${label}-logo-black.svg`)"
+                :src="require(`../../../static/img/${label}-logo-indigo.svg`)"
                 max-width='20'
             ></v-img>
     </v-btn>

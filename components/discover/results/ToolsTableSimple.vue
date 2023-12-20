@@ -152,7 +152,7 @@ export default {
                     value: 'source', 
                     width: '2.5rem',
                 },
-                {text: 'Description', value: 'description', width: '15rem'},
+                {text: 'Description', value: 'description', width: '18rem'},
                 {
                     text: 'Curation', 
                     value: 'curation', 

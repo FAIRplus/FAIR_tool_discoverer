@@ -1,7 +1,10 @@
 <template>
     <v-container 
         :fluid="$vuetify.breakpoint.smAndDown"
-        :id="$vuetify.breakpoint.xl ? 'discoverer-large' : ''">
+        :id="$vuetify.breakpoint.xl ? 'discoverer-large' : ''"
+        >
+        
+        
         <h4 class="text-h5 text-center mt-10 title">Welcome to the FAIRification Tool Discoverer</h4>
       <div class="text-body-2 mt-5 mb-10 text-center">
         Discovering tools for your FAIRification tasks
@@ -38,13 +41,15 @@
 <script>
 import IndexCard from '~/components/IndexCard.vue'
 
+
 export default {
     name: "index",
     components: {
-        IndexCard
+        IndexCard,
     },
     data(){
         return {
+            
             cards : [
               { // Run Discoverer
                 icon: 'mdi-cogs', 
