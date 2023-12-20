@@ -50,7 +50,7 @@
                     <v-img  
                         :src="screenshot"
                         max-width=600 
-                        class="mx-auto elevation-1"
+                        class="mx-auto"
                         
                         >
                     </v-img>
