@@ -1,5 +1,5 @@
 <template>
-    <div class="text-overline grey--text text--darken-1">
+    <div class="text-body-1 grey--text text--darken-1">
       {{ dictGet(type).hover }}
     </div>
   
@@ -13,24 +13,28 @@ export default {
         return {
             typesAbb: {
                 'cmd' : {
-                'text': 'CMD',
-                'hover': 'Command-line'
+                    'text': 'CMD',
+                    'hover': 'Command-line'
                 },
                 'web': {
-                'text': 'Web',
-                'hover': 'Web Application'
+                    'text': 'Web',
+                    'hover': 'Web Application'
                 },
                 'db' : {
                 'text': 'DB',
                 'hover': 'Database'
                 },
                 'lib' : {
-                'text': 'Lib',
-                'hover': 'Library'
+                    'text': 'Lib',
+                    'hover': 'Library'
+                },
+                'suite' : {
+                    'text': 'Suite',
+                    'hover': 'Suite'
                 },
                 'unknown': {
-                'text': 'Unknown',
-                'hover': 'Unknown'
+                    'text': 'Unknown',
+                    'hover': 'Unknown'
                 }
             }
         }
@@ -46,12 +50,11 @@ export default {
 
 <style scoped>
 
-.text-overline {
-    font-size: 0.25rem;
+.text-body-1 {
+    font-size: 0.7rem !important;
     font-weight: 500;
-    line-height: 2;
+    line-height: 1.4;
     letter-spacing: 0.07633em !important;
-    text-transform: uppercase;
 };
 
 

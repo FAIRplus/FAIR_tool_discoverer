@@ -249,7 +249,7 @@ export default {
                     sortable: false, 
                     filterable: true,
                     value: 'source', 
-                    width: '5%',
+                    width: '8%',
                     filter: value => {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
                     }

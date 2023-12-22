@@ -115,7 +115,7 @@
 </style>
 
 <script>
-import screenshot from '../static/img/help_screenshot.png'
+import screenshot from '../static/img/help_image.png'
 import sectionTitle from '../components/sectionTitle.vue'
 
 export default {

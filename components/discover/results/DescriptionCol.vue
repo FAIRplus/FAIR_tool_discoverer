@@ -26,7 +26,7 @@ export default {
                 return(value)
             }else{
                 if(value.length > 320){
-                    var short = `${value.substring(0,380)}... <a>more</a>`
+                    var short = `${value.substring(0,320)}... <a>more</a>`
                 }else{
                  return(value)
                 }

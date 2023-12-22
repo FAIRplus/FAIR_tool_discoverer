@@ -27,7 +27,7 @@ export default {
 <style scoped>
 
 .text-subtitle-1 {
-    font-size: .8rem;
+    font-size: .9rem !important;; 
     font-weight: 500;
     line-height: 1.6;
     letter-spacing: 0.0075em;
