@@ -11,9 +11,26 @@
                     :href="edamBrowserLink(item.uri)" 
                     target="_blank"
                     class="custom-chip mt-1 "
+                    v-if="needsTrimming(item.label)"
                     >
-                   {{ trimLongLabel(item.label) }}
-                </v-chip>                
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <span v-on="on">{{ trimLongLabel(item.label) }}</span>
+                        </template>
+                        <span>{{ item.label }}</span>
+                    </v-tooltip>
+                   
+                </v-chip>
+                <v-chip
+                    small
+                    outlined
+                    :href="edamBrowserLink(item.uri)" 
+                    target="_blank"
+                    class="custom-chip mt-1 "
+                    v-else
+                    >
+                        {{ item.label }}
+                </v-chip>                 
             </div>
           <span v-if="items != null && dots"><a class="text-caption">more</a></span>  
     </td>
@@ -56,6 +73,13 @@ export default {
             }else{
                 var short_list = list.slice(0,10)
                 return(short_list)
+            }
+        },
+        needsTrimming(label){
+            if(label.length > 20){
+                return true
+            }else{
+                return false
             }
         },
         trimLongLabel(label){
