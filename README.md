@@ -1,10 +1,16 @@
 # FAIRification Tool Discoverer 
 
 <p align="center">
-  <img src="./static/img/FAIR-discoverer.png" />
+  <img src="./static/img/FAIR-discoverer.png" /> 
 </p>
 
-
+<div style="text-align: center"> 
+  
+  [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/emartps/tools-discoverer-nuxt?sort=semver)](https://hub.docker.com/r/emartps/tools-discoverer-nuxt)
+  [![License: Apache 2.0](https://img.shields.io/badge/License-Apache-red.svg)](https://opensource.org/licenses/Apache-2.0)
+  [![build and push](https://github.com/FAIRplus/FAIR_tool_discoverer/actions/workflows/main.yml/badge.svg)](https://github.com/FAIRplus/FAIR_tool_discoverer/actions/workflows/main.yml) 
+  
+</div> 
 
 The FAIRification Tool Discoverer is a tool that allows to discover tools that can be used to FAIRify data. The tool is composed of two parts: the back-end and the front-end. The back-end is a [REST API](https://github.com/FAIRplus/FAIR_tool_discoverer_backend) that allows to query the database of tools. The front-end is a web application that allows to query the database of tools and visualize the results.
 
