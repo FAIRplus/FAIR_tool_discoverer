@@ -1,7 +1,7 @@
 # FAIRification Tool Discoverer 
 
 <p align="center">
-  <img src="./static/img/logo-clean.png" /> 
+  <img src="./static/img/FAIR-discoverer.png" /> 
 </p>
 
 <div align="center"> 
