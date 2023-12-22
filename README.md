@@ -15,8 +15,7 @@
 
 The FAIRification Tool Discoverer is a tool that allows to discover tools that can be used to FAIRify data. The tool is composed of two parts: the back-end and the front-end. The back-end is a [REST API](https://github.com/FAIRplus/FAIR_tool_discoverer_backend) that allows to query the database of tools. The front-end is a web application that allows to query the database of tools and visualize the results.
 
-This repository contains the code of the Front-end of the FAIR Tools Obervatory. 
-
+This repository contains the code of the Front-end of the FAIR Tools Obervatory. It is a [Nuxt.js](https://nuxtjs.org/) application that uses [Vuetify](https://vuetifyjs.com/) as UI framework.
 
 ## Development 
 
