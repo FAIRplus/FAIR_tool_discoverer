@@ -12,7 +12,7 @@
                     target="_blank"
                     class="custom-chip mt-1 "
                     >
-                   {{ item.label }}
+                   {{ trimLongLabel(item.label) }}
                 </v-chip>                
             </div>
           <span v-if="items != null && dots"><a class="text-caption">more</a></span>  
@@ -57,6 +57,14 @@ export default {
                 var short_list = list.slice(0,10)
                 return(short_list)
             }
+        },
+        trimLongLabel(label){
+            if(label.length > 20){
+                var short_label = label.slice(0,20) + '...'
+                return(short_label)
+            }else{
+                return(label)
+            }
         }
     }
 }
@@ -70,10 +78,11 @@ export default {
   min-width: 0;
   max-width: 95%;
   box-sizing: border-box;
+
 }
 
 .custom-chip {
-  max-width: 100%; /* Set the desired width for the chips */
+  max-width: 150px; /* Set the desired width for the chips */
 }
 
 .v-chip >>> .v-chip__content {

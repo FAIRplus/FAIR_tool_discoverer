@@ -249,16 +249,16 @@ export default {
                     sortable: false, 
                     filterable: true,
                     value: 'source', 
-                    width: '8rem',
+                    width: '5%',
                     filter: value => {
                         return this.filter(this.toggle_sources, this.sourceMapping, value)
                     }
                 },
-                {text: 'Description', value: 'description', width: '20rem'},
+                {text: 'Description', value: 'description', width: '20%'},
                 {
                     text: 'Curation', 
                     value: 'curation', 
-                    width: '2rem',
+                    width: '5%',
                     filterable: true,
                     filter: value => {
                         if( value != null && this.curationValues != null ){
@@ -268,13 +268,13 @@ export default {
                         }
                     }
                 },
-                {text: 'Related Topics', value: 'edam_topics', width: '7rem'},
-                {text: 'Functionality', value: 'edam_operations', width: '7rem'},
+                {text: 'Related Topics', value: 'edam_topics', width: '10%'},
+                {text: 'Functionality', value: 'edam_operations', width: '10%'},
                 {
                     text: 'Input Format', 
                     value: 'input_formats', 
                     filterable: true,
-                    width: '8rem',
+                    width: '5%',
                     filter: value => {
                         if( value != null && this.inputValues != null ){
                             return this.filterDataType(this.inputValues, value)
@@ -287,7 +287,7 @@ export default {
                     text: 'Output Format', 
                     value: 'output_formats', 
                     filterable: false,
-                    width: '7rem',
+                    width: '5%',
                     filter: value => {
                         if( value != null && this.outputValues != null ){
                             return this.filterDataType(this.outputValues, value)
@@ -296,8 +296,8 @@ export default {
                         }
                     }
                 },
-                {text: 'Publications', value: 'publications', width: '15rem'},
-                {text: 'License', value: 'license', width: '5rem'},
+                {text: 'Publications', value: 'publications', width: '10%'},
+                {text: 'License', value: 'license', width: '2%'},
                 ]
             },
     },
