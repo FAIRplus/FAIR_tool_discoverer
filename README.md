@@ -10,7 +10,7 @@
 [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/emartps/tools-discoverer-nuxt?sort=semver)](https://hub.docker.com/r/emartps/tools-discoverer-nuxt)
 [![License](https://img.shields.io/github/license/FAIRplus/FAIR_tool_discoverer)](https://github.com/FAIRplus/FAIR_tool_discoverer/blob/main/LICENSE.md) [![build and push](https://github.com/FAIRplus/FAIR_tool_discoverer/actions/workflows/main.yml/badge.svg)](https://github.com/FAIRplus/FAIR_tool_discoverer/actions/workflows/main.yml) 
 
-[Home](https://fair-tool-discoverer.bsc.es/) - [Help](https://fair-tool-discoverer.bsc.es/help) - [API](https://fair-tool-discoverer.bsc.es/api) - [Publication]()
+[Home](https://fair-tool-discoverer.bsc.es/) - [Help](https://fair-tool-discoverer.bsc.es/help) - [API](https://fair-tool-discoverer.bsc.es/api) - [Docker](https://hub.docker.com/r/emartps/tools-discoverer-nuxt) - [Publication]()
 
 </div> 
 
