@@ -31,50 +31,26 @@ npm install
 npm run dev
 ```
 
+### Docker execution 
 
-### Docker-compose  
-The file `docker-compose-dev.yml` contains the definition of the development environment. It contains all the necessary services for development, which are the following:
+An image of the application is available in [Docker Hub](https://hub.docker.com/r/emartps/tools-discoverer-nuxt). To run the application using Docker, follow the next steps: 
 
-```yaml
-version: '3.8'
-
-services:
-  mongodb:
-    container_name: mongo_dev
-    image: mongo
-    ports:
-      - '27017:27017'
-
-  mongo-seed:
-    container_name: mongo_seed
-    build: ./database/mongo-seed
-    depends_on:
-      - 'mongodb'
-  
-  prepare-data:
-    container_name: prepare_data
-    build: ./database/prepare-data
-    depends_on:
-      - 'mongo-seed'
-  
-  back-end:
-    image: emartps/tools-discoverer-api
-    restart: unless-stopped
-    depends_on:
-      - 'mongodb'
-
-  front-end:
-    image: emartps/tools-discoverer-nuxt
-    restart: unless-stopped
-    depends_on:
-      - 'back-end' 
-    ports:
-      - '8080:80'
+1. Pull the image from Docker Hub
+```sh
+docker pull emartps/tools-discoverer-nuxt
+```
+2. Run the image
+```sh
+docker run -p 8080:80 emartps/tools-discoverer-nuxt
 ``` 
 
-## Deployment 
+The application will be available at http://localhost:8080.
 
-The deployment is done through GitHub Actions. The file `github/worflows.main.yml` contains the definition of the workflow. The workflow is triggered when a new release is created. The workflow performs the following steps:
+
+
+## CI/CD
+
+The deployment is done through GitHub Actions. The file `github/worflows.main.yml` contains the definition of the workflow. The workflow is triggered manually. The workflow performs the following steps:
 - Build of the docker image of the application.
 - Push of the image to the Docker Hub.
-- Deployment of the image to the server using webhooks.
+
